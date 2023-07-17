@@ -5,7 +5,19 @@ VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OTP.Api", "src\OTP.Api\OTP.Api.csproj", "{7F53877E-E985-4F87-B731-B96BF48A8A65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OTP.Domains", "src\OTP.Domains\OTP.Domains.csproj", "{D2B34C0D-50B7-4358-804F-4E742BEDC70E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OTP.Domains", "src\OTP.Domains\OTP.Domains.csproj", "{D2B34C0D-50B7-4358-804F-4E742BEDC70E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OTP.Dtos", "src\OTP.Dtos\OTP.Dtos.csproj", "{BBB5D47C-A8A2-4A84-8F6D-8E90C6750DA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OTP.Repositories", "src\OTP.Repositories\OTP.Repositories.csproj", "{D6206F0D-C694-4EE4-AFA4-9F5E299A48D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OTP.Resources", "src\OTP.Resources\OTP.Resources.csproj", "{187DC7F5-718C-4A73-94A9-BB18FD7ECA6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OTP.Services", "src\OTP.Services\OTP.Services.csproj", "{E6EBBB25-682A-40EC-B999-8F11F22DA578}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OTP.Utilities", "src\OTP.Utilities\OTP.Utilities.csproj", "{665A6478-B4BB-4A2F-84E9-9F24A1BDF300}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OTP.Tests", "src\OTP.Tests\OTP.Tests.csproj", "{399E9EC7-0E1C-4273-8DF6-201B344D07DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +33,30 @@ Global
 		{D2B34C0D-50B7-4358-804F-4E742BEDC70E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2B34C0D-50B7-4358-804F-4E742BEDC70E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2B34C0D-50B7-4358-804F-4E742BEDC70E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBB5D47C-A8A2-4A84-8F6D-8E90C6750DA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBB5D47C-A8A2-4A84-8F6D-8E90C6750DA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBB5D47C-A8A2-4A84-8F6D-8E90C6750DA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBB5D47C-A8A2-4A84-8F6D-8E90C6750DA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6206F0D-C694-4EE4-AFA4-9F5E299A48D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6206F0D-C694-4EE4-AFA4-9F5E299A48D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6206F0D-C694-4EE4-AFA4-9F5E299A48D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6206F0D-C694-4EE4-AFA4-9F5E299A48D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{187DC7F5-718C-4A73-94A9-BB18FD7ECA6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{187DC7F5-718C-4A73-94A9-BB18FD7ECA6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{187DC7F5-718C-4A73-94A9-BB18FD7ECA6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{187DC7F5-718C-4A73-94A9-BB18FD7ECA6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6EBBB25-682A-40EC-B999-8F11F22DA578}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6EBBB25-682A-40EC-B999-8F11F22DA578}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6EBBB25-682A-40EC-B999-8F11F22DA578}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6EBBB25-682A-40EC-B999-8F11F22DA578}.Release|Any CPU.Build.0 = Release|Any CPU
+		{665A6478-B4BB-4A2F-84E9-9F24A1BDF300}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{665A6478-B4BB-4A2F-84E9-9F24A1BDF300}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{665A6478-B4BB-4A2F-84E9-9F24A1BDF300}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{665A6478-B4BB-4A2F-84E9-9F24A1BDF300}.Release|Any CPU.Build.0 = Release|Any CPU
+		{399E9EC7-0E1C-4273-8DF6-201B344D07DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{399E9EC7-0E1C-4273-8DF6-201B344D07DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{399E9EC7-0E1C-4273-8DF6-201B344D07DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{399E9EC7-0E1C-4273-8DF6-201B344D07DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
