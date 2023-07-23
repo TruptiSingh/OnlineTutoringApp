@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
+using OTP.Api.Ioc;
 using OTP.Repositories;
 
 namespace OTP.Api
@@ -73,6 +74,8 @@ namespace OTP.Api
 			services.Configure<IConfiguration>(Configuration);
 
 			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+			services.Initialise();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

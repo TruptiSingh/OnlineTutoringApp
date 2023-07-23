@@ -22,7 +22,7 @@ namespace OTP.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resource {
+    public class Resource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace OTP.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("OTP.Resources.Resource", typeof(Resource).Assembly);
@@ -51,12 +51,102 @@ namespace OTP.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12 - 5 pm.
+        /// </summary>
+        public static string _12___5_pm {
+            get {
+                return ResourceManager.GetString("12_-_5_pm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A Level.
+        /// </summary>
+        public static string A_Level {
+            get {
+                return ResourceManager.GetString("A_Level", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to After 5 pm.
+        /// </summary>
+        public static string After_5_pm {
+            get {
+                return ResourceManager.GetString("After_5_pm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Before 12.
+        /// </summary>
+        public static string Before_12 {
+            get {
+                return ResourceManager.GetString("Before_12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Proof Of Address.
+        /// </summary>
+        public static string Proof_Of_Address {
+            get {
+                return ResourceManager.GetString("Proof_Of_Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Proof Of DBS.
+        /// </summary>
+        public static string Proof_Of_DBS {
+            get {
+                return ResourceManager.GetString("Proof_Of_DBS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Proof Of Eligibility To Work.
+        /// </summary>
+        public static string Proof_Of_Eligibility_To_Work {
+            get {
+                return ResourceManager.GetString("Proof_Of_Eligibility_To_Work", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Proof Of Id.
+        /// </summary>
+        public static string Proof_Of_Id {
+            get {
+                return ResourceManager.GetString("Proof_Of_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Student&apos;s Home.
+        /// </summary>
+        public static string Student_s_Home {
+            get {
+                return ResourceManager.GetString("Student\'s_Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tutor&apos;s Home.
+        /// </summary>
+        public static string Tutor_s_Home {
+            get {
+                return ResourceManager.GetString("Tutor\'s_Home", resourceCulture);
             }
         }
     }
