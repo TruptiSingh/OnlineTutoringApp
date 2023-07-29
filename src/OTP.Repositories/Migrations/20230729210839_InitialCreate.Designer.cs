@@ -12,7 +12,7 @@ using OTP.Repositories;
 namespace OTP.Repositories.Migrations
 {
     [DbContext(typeof(OTPDbContext))]
-    [Migration("20230723180017_InitialCreate")]
+    [Migration("20230729210839_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
