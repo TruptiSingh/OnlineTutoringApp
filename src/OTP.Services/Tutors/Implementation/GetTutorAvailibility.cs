@@ -16,7 +16,7 @@ namespace OTP.Services.Tutors.Implementation
 			_tutorRepository = tutorRepository;
 		}
 
-		public async Task<List<TutorAvailibilityDTO>> GetTutorAvailibilityAsync(int tutorId)
+		public async Task<List<GetTutorAvailibilityDTO>> GetTutorAvailibilityAsync(int tutorId)
 		{
 			ExpressionStarter<Tutor> predicate = PredicateBuilder.New<Tutor>();
 
@@ -24,10 +24,10 @@ namespace OTP.Services.Tutors.Implementation
 
 			var tutor = await _tutorRepository.GetAsync(predicate, t => t.TutorAvailibilities);
 
-			List<TutorAvailibilityDTO> tutorAvailibilityDTOs = new();
+			List<GetTutorAvailibilityDTO> tutorAvailibilityDTOs = new();
 
 			tutorAvailibilityDTOs.AddRange(tutor.TutorAvailibilities
-				.Select(tutorAvailibility => new TutorAvailibilityDTO
+				.Select(tutorAvailibility => new GetTutorAvailibilityDTO
 				{
 					TutorId = tutor.Id,
 					TimeRange = tutorAvailibility.TimeRange.Name,

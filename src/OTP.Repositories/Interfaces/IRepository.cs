@@ -17,6 +17,12 @@ namespace OTP.Repositories.Interfaces
 		Task AddAsync(TEntity entity);
 
 		/// <summary>
+		/// Add collection of entities to the repository
+		/// </summary>
+		/// <param name="entity"></param>
+		Task AddRangeAsync(ICollection<TEntity> entities);
+
+		/// <summary>
 		/// Marks TEntity object as 'Updated' so that EF can update it in the database
 		/// </summary>
 		/// <param name="entity"></param>
@@ -28,6 +34,12 @@ namespace OTP.Repositories.Interfaces
 		/// <typeparam name="T"></typeparam>
 		/// <param name="entity"></param>
 		Task DeleteAsync(TEntity entity);
+
+		/// <summary>
+		/// Delete specified entities of type TEntity from the repository
+		/// </summary>
+		/// <param name="entity"></param>
+		Task DeleteRangeAsync(ICollection<TEntity> entities);
 
 		/// <summary>
 		/// Retrieves TEntity object based on the provided filter (criteria) and includes any dependent entities

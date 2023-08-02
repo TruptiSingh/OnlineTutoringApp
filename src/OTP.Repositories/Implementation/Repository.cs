@@ -50,6 +50,16 @@ namespace OTP.Repositories.Implementation
 		}
 
 		/// <summary>
+		/// Add collection of entities to the repository
+		/// </summary>
+		/// <param name="entities"></param>
+		/// <returns></returns>
+		public async Task AddRangeAsync(ICollection<TEntity> entities)
+		{
+			await _context.Set<TEntity>().AddRangeAsync(entities);
+		}
+
+		/// <summary>
 		/// Marks TEntity object as 'Updated' so that EF can update it in the database
 		/// </summary>
 		/// <param name="entity"></param>
@@ -64,7 +74,7 @@ namespace OTP.Repositories.Implementation
 		}
 
 		/// <summary>
-		/// Delete specified entity of type T from the repository
+		/// Delete specified entity of type TEntity from the repository
 		/// </summary>
 		/// <param name="entity"></param>
 		public Task DeleteAsync(TEntity entity)
@@ -75,6 +85,17 @@ namespace OTP.Repositories.Implementation
 			}
 
 			_context.Set<TEntity>().Remove(entity);
+
+			return Task.CompletedTask;
+		}
+
+		/// <summary>
+		/// Delete specified entities of type TEntity from the repository
+		/// </summary>
+		/// <param name="entity"></param>
+		public Task DeleteRangeAsync(ICollection<TEntity> entities)
+		{
+			_context.Set<TEntity>().RemoveRange(entities);
 
 			return Task.CompletedTask;
 		}

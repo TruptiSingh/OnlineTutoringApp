@@ -19,13 +19,13 @@ namespace OTP.Api.Controllers
 
 		[HttpGet("TutorAvailibility/{tutorId}")]
 		[Authorize]
-		public async Task<ActionResult<List<TutorAvailibilityDTO>>> GetTutorAvailibilityAsync(int tutorId)
+		public async Task<ActionResult<List<GetTutorAvailibilityDTO>>> GetTutorAvailibilityAsync(int tutorId)
 		{
 			try
 			{
 				return Ok(await _getTutorAvailibility.GetTutorAvailibilityAsync(tutorId));
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				return NotFound();
 			}

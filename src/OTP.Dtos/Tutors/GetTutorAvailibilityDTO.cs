@@ -1,6 +1,6 @@
 ﻿namespace OTP.Dtos.Tutors
 {
-	public class TutorAvailibilityDTO
+	public class GetTutorAvailibilityDTO
 	{
 		public int TutorId { get; set; }
 
