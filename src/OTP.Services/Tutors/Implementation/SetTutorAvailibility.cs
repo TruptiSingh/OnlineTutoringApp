@@ -20,15 +20,33 @@ namespace OTP.Services.Tutors.Implementation
 		{
 			ExpressionStarter<TutorAvailibility> predicate = PredicateBuilder.New<TutorAvailibility>();
 
+			var availibilities = new List<TutorAvailibility>();
+
 			predicate.And(t => t.TutorId == tutorId);
 
 			var tutorAvailibilities = await _tutorAvailibilityRepository.GetAllAsync(predicate, includes: ta => ta.Tutor);
 
-			if (tutorAvailibilities.Any())
+			using (var transaction = await _tutorAvailibilityRepository.StartTransactionAsync())
 			{
-				await _tutorAvailibilityRepository.DeleteRangeAsync(tutorAvailibilities.ToList());
-			}
+				if (tutorAvailibilities.Any())
+				{
+					await _tutorAvailibilityRepository.DeleteRangeAsync(tutorAvailibilities.ToList());
+				}
 
+				availibilities.AddRange(setTutorAvailibilityDTOs.Select(ta => new TutorAvailibility
+				{
+					TutorId = tutorId,
+					CreatedDate = DateTime.Now,
+					ModifiedDate = DateTime.Now,
+					IsDeleted = false,
+					TimeRangeId = ta.TimeRangeId,
+					WeekDayId = ta.WeekDayId
+				}));
+
+				await _tutorAvailibilityRepository.AddRangeAsync(availibilities);
+
+				await transaction.CommitAsync();
+			}
 
 			throw new NotImplementedException();
 		}
