@@ -6,7 +6,9 @@ namespace OTP.Domains.Models.Tutors
 {
 	public class Tutor : ModelBase
 	{
-		public int LinkedUserId { get; set; }
+		public string LinkedUserId { get; set; }
+
+		public string Bio { get; set; }
 
 		public decimal PricePerHour { get; set; }
 

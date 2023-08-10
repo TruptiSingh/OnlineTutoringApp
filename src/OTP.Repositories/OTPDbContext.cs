@@ -56,13 +56,31 @@ namespace OTP.Repositories
 
 			modelBuilder.Entity<Gender>().ToTable(nameof(Gender));
 
+			modelBuilder.Entity<Gender>().HasData(
+				new Gender { Id = 1, Name = "Female", CreatedDate = DateTime.UtcNow, IsDeleted = false, ModifiedDate = DateTime.UtcNow },
+				new Gender { Id = 2, Name = "Male", CreatedDate = DateTime.UtcNow, IsDeleted = false, ModifiedDate = DateTime.UtcNow });
+
 			modelBuilder.Entity<Subject>().ToTable(nameof(Subject));
 
 			modelBuilder.Entity<TeachingPreference>().ToTable(nameof(TeachingPreference));
 
 			modelBuilder.Entity<TimeRange>().ToTable(nameof(TimeRange));
 
+			modelBuilder.Entity<TimeRange>().HasData(
+				new TimeRange { Id = 1, Name = "Before 12", CreatedDate = DateTime.UtcNow, IsDeleted = false, ModifiedDate = DateTime.UtcNow },
+				new TimeRange { Id = 2, Name = "12 - 5 pm", CreatedDate = DateTime.UtcNow, IsDeleted = false, ModifiedDate = DateTime.UtcNow },
+				new TimeRange { Id = 3, Name = "After 5 pm", CreatedDate = DateTime.UtcNow, IsDeleted = false, ModifiedDate = DateTime.UtcNow });
+
 			modelBuilder.Entity<WeekDay>().ToTable(nameof(WeekDay));
+
+			modelBuilder.Entity<WeekDay>().HasData(
+				new WeekDay { Id = 1, Name = "Sunday", CreatedDate = DateTime.UtcNow, IsDeleted = false, ModifiedDate = DateTime.UtcNow },
+				new WeekDay { Id = 2, Name = "Monday", CreatedDate = DateTime.UtcNow, IsDeleted = false, ModifiedDate = DateTime.UtcNow },
+				new WeekDay { Id = 3, Name = "Tuesday", CreatedDate = DateTime.UtcNow, IsDeleted = false, ModifiedDate = DateTime.UtcNow },
+				new WeekDay { Id = 4, Name = "Wednesday", CreatedDate = DateTime.UtcNow, IsDeleted = false, ModifiedDate = DateTime.UtcNow },
+				new WeekDay { Id = 5, Name = "Thursday", CreatedDate = DateTime.UtcNow, IsDeleted = false, ModifiedDate = DateTime.UtcNow },
+				new WeekDay { Id = 6, Name = "Friday", CreatedDate = DateTime.UtcNow, IsDeleted = false, ModifiedDate = DateTime.UtcNow },
+				new WeekDay { Id = 7, Name = "Saturday", CreatedDate = DateTime.UtcNow, IsDeleted = false, ModifiedDate = DateTime.UtcNow });
 
 			modelBuilder.Entity<Student>().ToTable(nameof(Student));
 

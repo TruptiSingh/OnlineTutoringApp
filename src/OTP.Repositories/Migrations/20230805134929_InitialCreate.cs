@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace OTP.Repositories.Migrations
 {
     /// <inheritdoc />
@@ -113,7 +115,8 @@ namespace OTP.Repositories.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    LinkedUserId = table.Column<int>(type: "int", nullable: false),
+                    LinkedUserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Bio = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PricePerHour = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     EnhancedDBSChecked = table.Column<bool>(type: "bit", nullable: false),
                     RightToWorkVerified = table.Column<bool>(type: "bit", nullable: false),
@@ -358,6 +361,39 @@ namespace OTP.Repositories.Migrations
                         principalTable: "Subject",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Gender",
+                columns: new[] { "Id", "CreatedDate", "IsDeleted", "ModifiedDate", "Name" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(6987), false, new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(6989), "Female" },
+                    { 2, new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(6991), false, new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(6992), "Male" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "TimeRange",
+                columns: new[] { "Id", "CreatedDate", "IsDeleted", "ModifiedDate", "Name" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7422), false, new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7423), "Before 12" },
+                    { 2, new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7424), false, new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7424), "12 - 5 pm" },
+                    { 3, new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7425), false, new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7426), "After 5 pm" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "WeekDay",
+                columns: new[] { "Id", "CreatedDate", "IsDeleted", "ModifiedDate", "Name" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7535), false, new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7536), "Sunday" },
+                    { 2, new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7537), false, new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7537), "Monday" },
+                    { 3, new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7538), false, new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7539), "Tuesday" },
+                    { 4, new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7540), false, new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7540), "Wednesday" },
+                    { 5, new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7541), false, new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7542), "Thursday" },
+                    { 6, new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7543), false, new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7543), "Friday" },
+                    { 7, new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7544), false, new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7545), "Saturday" }
                 });
 
             migrationBuilder.CreateIndex(

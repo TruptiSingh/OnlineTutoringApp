@@ -7,16 +7,16 @@ using OTP.Services.Tutors.Interfaces;
 
 namespace OTP.Services.Tutors.Implementation
 {
-	public class SetTutorAvailibility : ISetTutorAvailibility
+	public class CreateTutorAvailibilityService : ICreateTutorAvailibilityService
 	{
 		private readonly IRepository<TutorAvailibility> _tutorAvailibilityRepository;
 
-		public SetTutorAvailibility(IRepository<TutorAvailibility> tutorAvailibilityRepository)
+		public CreateTutorAvailibilityService(IRepository<TutorAvailibility> tutorAvailibilityRepository)
 		{
 			_tutorAvailibilityRepository = tutorAvailibilityRepository;
 		}
 
-		public async Task SetTutorAvailibilityAsync(int tutorId, ICollection<SetTutorAvailibilityDTO> setTutorAvailibilityDTOs)
+		public async Task CreateTutorAvailibilityAsync(int tutorId, ICollection<TutorAvailibilityDTO> createTutorAvailibilityDTOs)
 		{
 			ExpressionStarter<TutorAvailibility> predicate = PredicateBuilder.New<TutorAvailibility>();
 
@@ -33,12 +33,9 @@ namespace OTP.Services.Tutors.Implementation
 					await _tutorAvailibilityRepository.DeleteRangeAsync(tutorAvailibilities.ToList());
 				}
 
-				availibilities.AddRange(setTutorAvailibilityDTOs.Select(ta => new TutorAvailibility
+				availibilities.AddRange(createTutorAvailibilityDTOs.Select(ta => new TutorAvailibility
 				{
 					TutorId = tutorId,
-					CreatedDate = DateTime.Now,
-					ModifiedDate = DateTime.Now,
-					IsDeleted = false,
 					TimeRangeId = ta.TimeRangeId,
 					WeekDayId = ta.WeekDayId
 				}));
@@ -47,8 +44,6 @@ namespace OTP.Services.Tutors.Implementation
 
 				await transaction.CommitAsync();
 			}
-
-			throw new NotImplementedException();
 		}
 	}
 }

@@ -12,7 +12,7 @@ using OTP.Repositories;
 namespace OTP.Repositories.Migrations
 {
     [DbContext(typeof(OTPDbContext))]
-    [Migration("20230729210839_InitialCreate")]
+    [Migration("20230805134929_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -101,6 +101,24 @@ namespace OTP.Repositories.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Gender", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(6987),
+                            IsDeleted = false,
+                            ModifiedDate = new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(6989),
+                            Name = "Female"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(6991),
+                            IsDeleted = false,
+                            ModifiedDate = new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(6992),
+                            Name = "Male"
+                        });
                 });
 
             modelBuilder.Entity("OTP.Domains.Models.CodedLists.TeachingPreference", b =>
@@ -153,6 +171,32 @@ namespace OTP.Repositories.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TimeRange", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7422),
+                            IsDeleted = false,
+                            ModifiedDate = new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7423),
+                            Name = "Before 12"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7424),
+                            IsDeleted = false,
+                            ModifiedDate = new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7424),
+                            Name = "12 - 5 pm"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedDate = new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7425),
+                            IsDeleted = false,
+                            ModifiedDate = new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7426),
+                            Name = "After 5 pm"
+                        });
                 });
 
             modelBuilder.Entity("OTP.Domains.Models.CodedLists.WeekDay", b =>
@@ -179,6 +223,64 @@ namespace OTP.Repositories.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("WeekDay", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7535),
+                            IsDeleted = false,
+                            ModifiedDate = new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7536),
+                            Name = "Sunday"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7537),
+                            IsDeleted = false,
+                            ModifiedDate = new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7537),
+                            Name = "Monday"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedDate = new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7538),
+                            IsDeleted = false,
+                            ModifiedDate = new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7539),
+                            Name = "Tuesday"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedDate = new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7540),
+                            IsDeleted = false,
+                            ModifiedDate = new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7540),
+                            Name = "Wednesday"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedDate = new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7541),
+                            IsDeleted = false,
+                            ModifiedDate = new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7542),
+                            Name = "Thursday"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedDate = new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7543),
+                            IsDeleted = false,
+                            ModifiedDate = new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7543),
+                            Name = "Friday"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedDate = new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7544),
+                            IsDeleted = false,
+                            ModifiedDate = new DateTime(2023, 8, 5, 13, 49, 29, 696, DateTimeKind.Utc).AddTicks(7545),
+                            Name = "Saturday"
+                        });
                 });
 
             modelBuilder.Entity("OTP.Domains.Models.Common.UserImage", b =>
@@ -406,6 +508,9 @@ namespace OTP.Repositories.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Bio")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
@@ -415,8 +520,8 @@ namespace OTP.Repositories.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int>("LinkedUserId")
-                        .HasColumnType("int");
+                    b.Property<string>("LinkedUserId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");

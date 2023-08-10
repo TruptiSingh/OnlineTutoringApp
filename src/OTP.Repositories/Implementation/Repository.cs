@@ -40,12 +40,6 @@ namespace OTP.Repositories.Implementation
 		/// <param name="entity"></param>
 		public async Task AddAsync(TEntity entity)
 		{
-			entity.CreatedDate = DateTime.UtcNow;
-
-			entity.ModifiedDate = DateTime.UtcNow;
-
-			entity.IsDeleted = false;
-
 			await _context.Set<TEntity>().AddAsync(entity);
 		}
 
@@ -205,7 +199,11 @@ namespace OTP.Repositories.Implementation
 		/// </summary>
 		/// <returns></returns>
 		public async Task<int> CommitAsync(CancellationToken cancellationToken = default)
-			=> await _context.SaveChangesAsync(cancellationToken);
+		{
+			BeforeSavingChanges();
+
+			return await _context.SaveChangesAsync(cancellationToken);
+		}
 
 		/// <summary>
 		/// Starts the transaction
@@ -214,6 +212,34 @@ namespace OTP.Repositories.Implementation
 		public async Task<IDbContextTransaction> StartTransactionAsync()
 		{
 			return await _context.Database.BeginTransactionAsync();
+		}
+
+		#endregion
+
+		#region Private Methods
+
+		private void BeforeSavingChanges()
+		{
+			_context.ChangeTracker.DetectChanges();
+
+			foreach (var entry in _context.ChangeTracker.Entries())
+			{
+				var entity = entry.Entity as ModelBase;
+
+				if (entry.State == EntityState.Added)
+				{
+					entity.CreatedDate = DateTime.UtcNow;
+
+					entity.ModifiedDate = DateTime.UtcNow;
+
+					entity.IsDeleted = false;
+				}
+
+				if (entry.State == EntityState.Modified)
+				{
+					entity.ModifiedDate = DateTime.UtcNow;
+				}
+			}
 		}
 
 		#endregion

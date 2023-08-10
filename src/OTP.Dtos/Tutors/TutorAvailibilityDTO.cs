@@ -1,6 +1,6 @@
 ﻿namespace OTP.Dtos.Tutors
 {
-	public class SetTutorAvailibilityDTO
+	public class TutorAvailibilityDTO
 	{
 		public int WeekDayId { get; set; }
 
