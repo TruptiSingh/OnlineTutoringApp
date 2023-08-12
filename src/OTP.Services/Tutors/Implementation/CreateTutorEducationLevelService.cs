@@ -7,11 +7,11 @@ using OTP.Services.Tutors.Interfaces;
 
 namespace OTP.Services.Tutors.Implementation
 {
-	public class CreateTutorEducationLevel : ICreateTutorEducationLevel
+	public class CreateTutorEducationLevelService : ICreateTutorEducationLevelService
 	{
 		private readonly IRepository<TutorEducationLevel> _tutorEducationLevelRepository;
 
-		public CreateTutorEducationLevel(IRepository<TutorEducationLevel> tutorEducationLevelRepository)
+		public CreateTutorEducationLevelService(IRepository<TutorEducationLevel> tutorEducationLevelRepository)
 		{
 			_tutorEducationLevelRepository = tutorEducationLevelRepository;
 		}
@@ -26,23 +26,20 @@ namespace OTP.Services.Tutors.Implementation
 
 			var currentTutorEducationLevels = await _tutorEducationLevelRepository.GetAllAsync(predicate);
 
-			using (var transaction = await _tutorEducationLevelRepository.StartTransactionAsync())
+			if (currentTutorEducationLevels.Any())
 			{
-				if (currentTutorEducationLevels.Any())
-				{
-					await _tutorEducationLevelRepository.DeleteRangeAsync(currentTutorEducationLevels.ToList());
-				}
-
-				newTutorEducationLevels.AddRange(tutorEducationLevels.Select(tel => new TutorEducationLevel
-				{
-					EducationLevelId = tel.EducationLevelId,
-					TutorId = tutorId,
-				}).ToList());
-
-				await _tutorEducationLevelRepository.AddRangeAsync(newTutorEducationLevels.ToList());
-
-				transaction.Commit();
+				await _tutorEducationLevelRepository.DeleteRangeAsync(currentTutorEducationLevels.ToList());
 			}
+
+			newTutorEducationLevels.AddRange(tutorEducationLevels.Select(tel => new TutorEducationLevel
+			{
+				EducationLevelId = tel.EducationLevelId,
+				TutorId = tutorId,
+			}).ToList());
+
+			await _tutorEducationLevelRepository.AddRangeAsync(newTutorEducationLevels.ToList());
+
+			await _tutorEducationLevelRepository.CommitAsync();
 		}
 	}
 }

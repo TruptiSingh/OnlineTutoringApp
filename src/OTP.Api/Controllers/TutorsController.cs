@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Net;
+
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using OTP.Dtos.Tutors;
@@ -35,18 +37,17 @@ namespace OTP.Api.Controllers
 		}
 
 		[HttpPost]
-		public async Task<ActionResult<int>> CreateTutorAsync(TutorDTO tutorDTO)
+		public async Task<ActionResult<int>> CreateTutorAsync(CreateOrUpdateTutorDTO tutorDTO)
 		{
 			try
 			{
-				//tutorDTO.LinkedUserId = "0e08eb9a-af46-4071-8228-14f07ee2c478";
 				int id = await _createTutorService.CreateTutorAsync(tutorDTO);
 
 				return Ok(id);
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
-				return BadRequest(ex);
+				return StatusCode((int) HttpStatusCode.InternalServerError, "Error occured while creating a tutor. Please contact support.");
 			}
 		}
 	}

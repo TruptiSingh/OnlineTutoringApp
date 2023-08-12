@@ -22,7 +22,21 @@ namespace OTP.Api.Ioc
 
 			services.AddScoped<ICreateTutorAvailibilityService, CreateTutorAvailibilityService>();
 
+			services.AddScoped<ICreateTutorEducationLevelService, CreateTutorEducationLevelService>();
+
+			services.AddScoped<IGetTutorEducationLevelService, GetTutorEducationLevelService>();
+
+			services.AddScoped<ICreateTutorSubjectService, CreateTutorSubjectService>();
+
+			services.AddScoped<IGetTutorSubjectService, GetTutorSubjectService>();
+
+			services.AddScoped<ICreateTutorTeachingPreferenceService, CreateTutorTeachingPreferenceService>();
+
+			services.AddScoped<IGetTutorTeachingPreferenceService, GetTutorTeachingPreferenceService>();
+
 			services.AddScoped<ICreateTutorService, CreateTutorService>();
+
+			services.AddScoped<IGetTuorService, GetTuorService>();
 		}
 	}
 }

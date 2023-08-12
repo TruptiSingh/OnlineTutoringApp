@@ -26,23 +26,20 @@ namespace OTP.Services.Tutors.Implementation
 
 			var currentTutorTeachingPreferences = await _tutorTeachingPreferenceRepository.GetAllAsync(predicate);
 
-			using (var transaction = await _tutorTeachingPreferenceRepository.StartTransactionAsync())
+			if (currentTutorTeachingPreferences.Any())
 			{
-				if (currentTutorTeachingPreferences.Any())
-				{
-					await _tutorTeachingPreferenceRepository.DeleteRangeAsync(currentTutorTeachingPreferences.ToList());
-				}
-
-				newTutorTeachingPreferences.AddRange(tutorTeachingPreferences.Select(ttp => new TutorTeachingPreference
-				{
-					TeachingPreferenceId = ttp.TeachingPreferenceId,
-					TutorId = tutorId,
-				}).ToList());
-
-				await _tutorTeachingPreferenceRepository.AddRangeAsync(newTutorTeachingPreferences.ToList());
-
-				transaction.Commit();
+				await _tutorTeachingPreferenceRepository.DeleteRangeAsync(currentTutorTeachingPreferences.ToList());
 			}
+
+			newTutorTeachingPreferences.AddRange(tutorTeachingPreferences.Select(ttp => new TutorTeachingPreference
+			{
+				TeachingPreferenceId = ttp.TeachingPreferenceId,
+				TutorId = tutorId,
+			}).ToList());
+
+			await _tutorTeachingPreferenceRepository.AddRangeAsync(newTutorTeachingPreferences.ToList());
+
+			await _tutorTeachingPreferenceRepository.CommitAsync();
 		}
 	}
 }

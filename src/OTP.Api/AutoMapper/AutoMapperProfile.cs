@@ -21,8 +21,8 @@ namespace OTP.Api.AutoMapper
 			CreateMap<TutorSubject, TutorSubjectDTO>();
 			CreateMap<TutorAvailibility, TutorAvailibilityDTO>();
 			CreateMap<TeachingPreference, TeachingPreferenceDTO>();
-			//CreateMap<TutorTeachingPreference, TutorTeachingPreferenceDTO>();
-			CreateMap<Tutor, TutorDTO>();
+			CreateMap<Tutor, GetTutorDTO>()
+				.ForMember(t => t.TutorId, opt => opt.MapFrom(s => s.Id));
 
 			CreateMap<EducationLevelDTO, EducationLevel>()
 				.ForMember(el => el.CreatedDate, opt => opt.Ignore())

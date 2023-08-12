@@ -26,24 +26,21 @@ namespace OTP.Services.Tutors.Implementation
 
 			var tutorAvailibilities = await _tutorAvailibilityRepository.GetAllAsync(predicate, includes: ta => ta.Tutor);
 
-			using (var transaction = await _tutorAvailibilityRepository.StartTransactionAsync())
+			if (tutorAvailibilities.Any())
 			{
-				if (tutorAvailibilities.Any())
-				{
-					await _tutorAvailibilityRepository.DeleteRangeAsync(tutorAvailibilities.ToList());
-				}
-
-				availibilities.AddRange(createTutorAvailibilityDTOs.Select(ta => new TutorAvailibility
-				{
-					TutorId = tutorId,
-					TimeRangeId = ta.TimeRangeId,
-					WeekDayId = ta.WeekDayId
-				}));
-
-				await _tutorAvailibilityRepository.AddRangeAsync(availibilities);
-
-				await transaction.CommitAsync();
+				await _tutorAvailibilityRepository.DeleteRangeAsync(tutorAvailibilities.ToList());
 			}
+
+			availibilities.AddRange(createTutorAvailibilityDTOs.Select(ta => new TutorAvailibility
+			{
+				TutorId = tutorId,
+				TimeRangeId = ta.TimeRangeId,
+				WeekDayId = ta.WeekDayId
+			}));
+
+			await _tutorAvailibilityRepository.AddRangeAsync(availibilities);
+
+			await _tutorAvailibilityRepository.CommitAsync();
 		}
 	}
 }

@@ -10,65 +10,62 @@ namespace OTP.Services.Tutors.Implementation
 	public class CreateTutorService : ICreateTutorService
 	{
 		private readonly IRepository<Tutor> _tutorRepository;
-		//private readonly IRepository<TutorEducationLevel> _tutorEducationLevelRepository;
-		//private readonly IRepository<TutorSubject> _tutorSubjectRepository;
-		//private readonly IRepository<TutorTeachingPreference> _tutorTeachingPreferenceRepository;
-		//private readonly IMapper _mapper;
+		private readonly ICreateTutorAvailibilityService _createTutorAvailibilityService;
+		private readonly ICreateTutorEducationLevelService _createTutorEducationLevel;
+		private readonly ICreateTutorSubjectService _createTutorSubjectService;
+		private readonly ICreateTutorTeachingPreferenceService _createTutorTeachingPreferenceService;
 
-		public CreateTutorService(IRepository<Tutor> tutorRepository)
-		//IRepository<TutorEducationLevel> tutorEducationLevelRepository,
-		//IRepository<TutorSubject> tutorSubjectRepository,
-		//IRepository<TutorTeachingPreference> tutorTeachingPreferenceRepository,
-		//IMapper mapper)
+		public CreateTutorService(IRepository<Tutor> tutorRepository,
+			ICreateTutorAvailibilityService createTutorAvailibilityService,
+			ICreateTutorEducationLevelService createTutorEducationLevel,
+			ICreateTutorSubjectService createTutorSubjectService,
+			ICreateTutorTeachingPreferenceService createTutorTeachingPreferenceService)
 		{
 			_tutorRepository = tutorRepository;
-			//_tutorEducationLevelRepository = tutorEducationLevelRepository;
-			//_tutorSubjectRepository = tutorSubjectRepository;
-			//_tutorTeachingPreferenceRepository = tutorTeachingPreferenceRepository;
-			//_mapper = mapper;
+			_createTutorAvailibilityService = createTutorAvailibilityService;
+			_createTutorEducationLevel = createTutorEducationLevel;
+			_createTutorSubjectService = createTutorSubjectService;
+			_createTutorTeachingPreferenceService = createTutorTeachingPreferenceService;
 		}
 
-		public async Task<int> CreateTutorAsync(TutorDTO tutorDTO)
+		public async Task<int> CreateTutorAsync(CreateOrUpdateTutorDTO tutorDTO)
 		{
 			ExpressionStarter<Tutor> predicate = PredicateBuilder.New<Tutor>();
 
 			predicate.And(t => t.LinkedUserId == tutorDTO.LinkedUserId);
 
-			//Expression<Func<Tutor, object>> [] includes = new Expression<Func<Tutor, object>> []
-			//	{ t => t.EducationLevels, t => t.Subjects, t => t.TeachingPreferences, t => t.TutorAvailibilities };
-
-			var tutor = await _tutorRepository.GetAsync(predicate);
-
-			if (tutor == null)
+			using (var transaction = await _tutorRepository.StartTransactionAsync())
 			{
-				tutor = new Tutor
+				var tutor = await _tutorRepository.GetAsync(predicate);
+
+				if (tutor == null)
 				{
-					Bio = tutorDTO.Bio,
-					LinkedUserId = tutorDTO.LinkedUserId,
-					PricePerHour = tutorDTO.PricePerHour,
-				};
+					tutor = new Tutor
+					{
+						Bio = tutorDTO.Bio,
+						LinkedUserId = tutorDTO.LinkedUserId,
+						PricePerHour = tutorDTO.PricePerHour,
+					};
 
-				//List<TutorEducationLevel> tutorEducationLevels = _mapper.Map<List<TutorEducationLevel>>(tutorDTO.TutorEducationLevels);
+					await _tutorRepository.AddAsync(tutor);
 
-				//List<TutorSubject> tutorSubjects = _mapper.Map<List<TutorSubject>>(tutorDTO.TutorSubjects);
+					await _tutorRepository.CommitAsync();
 
-				//List<TutorTeachingPreference> tutorTeachingPreferences = _mapper.Map<List<TutorTeachingPreference>>(tutorDTO.TutorTeachingPreferences);
+					await _createTutorAvailibilityService.CreateTutorAvailibilityAsync(tutor.Id, tutorDTO.TutorAvailibilities);
 
-				//List<TutorAvailibility> tutorAvailibilities = _mapper.Map<List<TutorAvailibility>>(tutorDTO.TutorAvailibilities);
+					await _createTutorEducationLevel.CreateTutorEducationLevelAsync(tutor.Id, tutorDTO.TutorEducationLevels);
 
-				//tutorAvailibilities.ForEach(ta => ta.Tutor = tutor);
+					await _createTutorSubjectService.CreateTutorSubjectAsync(tutor.Id, tutorDTO.TutorSubjects);
 
-				//tutor.TutorAvailibilities = tutorAvailibilities;
+					await _createTutorTeachingPreferenceService.CreateTutorTeachingPreferenceAsync(tutor.Id, tutorDTO.TutorTeachingPreferences);
+				}
+				else
+				{
+					throw new Exception("Tutor already exists.");
+				}
 
-				await _tutorRepository.AddAsync(tutor);
-				//await _tutorEducationLevelRepository.AddRangeAsync(tutorEducationLevels);
-				//await _tutorSubjectRepository.AddRangeAsync(tutorSubjects);
-				//await _tutorTeachingPreferenceRepository.AddRangeAsync(tutorTeachingPreferences);
+				return tutor.Id;
 			}
-
-			await _tutorRepository.CommitAsync();
-
-			return tutor.Id;
 		}
 	}
 }

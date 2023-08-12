@@ -2,7 +2,7 @@
 
 namespace OTP.Services.Tutors.Interfaces
 {
-	public interface ICreateTutorEducationLevel
+	public interface ICreateTutorEducationLevelService
 	{
 		Task CreateTutorEducationLevelAsync(int tutorId, ICollection<TutorEducationLevelDTO> tutorEducationLevels);
 	}

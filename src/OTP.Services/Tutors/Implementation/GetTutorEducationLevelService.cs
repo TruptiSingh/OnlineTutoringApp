@@ -7,16 +7,16 @@ using OTP.Services.Tutors.Interfaces;
 
 namespace OTP.Services.Tutors.Implementation
 {
-	public class GetTutorEducationLevel : IGetTutorEducationLevel
+	public class GetTutorEducationLevelService : IGetTutorEducationLevelService
 	{
 		private readonly IRepository<Tutor> _tutorRepository;
 
-		public GetTutorEducationLevel(IRepository<Tutor> tutorRepository)
+		public GetTutorEducationLevelService(IRepository<Tutor> tutorRepository)
 		{
 			_tutorRepository = tutorRepository;
 		}
 
-		public async Task<ICollection<EducationLevelDTO>> GetEducationLevels(int tutorId)
+		public async Task<ICollection<EducationLevelDTO>> GetEducationLevelsAsync(int tutorId)
 		{
 			var predicate = PredicateBuilder.New<Tutor>();
 

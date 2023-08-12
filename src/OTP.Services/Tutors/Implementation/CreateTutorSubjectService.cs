@@ -26,23 +26,20 @@ namespace OTP.Services.Tutors.Implementation
 
 			var currentTutorSubjects = await _tutorSubjectRepository.GetAllAsync(predicate);
 
-			using (var transaction = await _tutorSubjectRepository.StartTransactionAsync())
+			if (currentTutorSubjects.Any())
 			{
-				if (currentTutorSubjects.Any())
-				{
-					await _tutorSubjectRepository.DeleteRangeAsync(currentTutorSubjects.ToList());
-				}
-
-				newTutorSubjects.AddRange(tutorSubjects.Select(ts => new TutorSubject
-				{
-					SubjectId = ts.SubjectId,
-					TutorId = tutorId,
-				}).ToList());
-
-				await _tutorSubjectRepository.AddRangeAsync(newTutorSubjects.ToList());
-
-				transaction.Commit();
+				await _tutorSubjectRepository.DeleteRangeAsync(currentTutorSubjects.ToList());
 			}
+
+			newTutorSubjects.AddRange(tutorSubjects.Select(ts => new TutorSubject
+			{
+				SubjectId = ts.SubjectId,
+				TutorId = tutorId,
+			}).ToList());
+
+			await _tutorSubjectRepository.AddRangeAsync(newTutorSubjects.ToList());
+
+			await _tutorSubjectRepository.CommitAsync();
 		}
 	}
 }
