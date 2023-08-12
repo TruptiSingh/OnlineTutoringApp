@@ -16,8 +16,4 @@
     <ProjectReference Include="..\OTP.Repositories\OTP.Repositories.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Subjects\Implementation\" />
-  </ItemGroup>
-
 </Project>

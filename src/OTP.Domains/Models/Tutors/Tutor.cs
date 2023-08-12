@@ -12,6 +12,8 @@ namespace OTP.Domains.Models.Tutors
 
 		public decimal PricePerHour { get; set; }
 
+		public decimal Rating { get; set; }
+
 		public bool EnhancedDBSChecked { get; set; }
 
 		public bool RightToWorkVerified { get; set; }

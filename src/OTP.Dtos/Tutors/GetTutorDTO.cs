@@ -14,6 +14,8 @@ namespace OTP.Dtos.Tutors
 
 		public decimal PricePerHour { get; set; }
 
+		public decimal Rating { get; set; }
+
 		public ICollection<EducationLevelDTO> EducationLevels { get; set; }
 
 		public ICollection<SubjectDTO> Subjects { get; set; }

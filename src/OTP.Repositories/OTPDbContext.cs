@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 using OTP.Domains.Models.CodedLists;
 using OTP.Domains.Models.Common;
@@ -8,6 +6,8 @@ using OTP.Domains.Models.ManyToMany;
 using OTP.Domains.Models.Students;
 using OTP.Domains.Models.Subjects;
 using OTP.Domains.Models.Tutors;
+
+using System.Reflection;
 
 namespace OTP.Repositories
 {
@@ -52,6 +52,12 @@ namespace OTP.Repositories
 		{
 			modelBuilder.Entity<DocumentType>().ToTable(nameof(DocumentType));
 
+			modelBuilder.Entity<DocumentType>().HasData(
+				new DocumentType { Id = 1, Name = "Proof Of Address", CreatedDate = DateTime.UtcNow, IsDeleted = false, ModifiedDate = DateTime.UtcNow },
+				new DocumentType { Id = 2, Name = "Proof Of Id", CreatedDate = DateTime.UtcNow, IsDeleted = false, ModifiedDate = DateTime.UtcNow },
+				new DocumentType { Id = 3, Name = "Proof Of DBS", CreatedDate = DateTime.UtcNow, IsDeleted = false, ModifiedDate = DateTime.UtcNow },
+				new DocumentType { Id = 4, Name = "Proof Of Eligibility To Work", CreatedDate = DateTime.UtcNow, IsDeleted = false, ModifiedDate = DateTime.UtcNow });
+
 			modelBuilder.Entity<EducationLevel>().ToTable(nameof(EducationLevel));
 
 			modelBuilder.Entity<Gender>().ToTable(nameof(Gender));
@@ -63,6 +69,11 @@ namespace OTP.Repositories
 			modelBuilder.Entity<Subject>().ToTable(nameof(Subject));
 
 			modelBuilder.Entity<TeachingPreference>().ToTable(nameof(TeachingPreference));
+
+			modelBuilder.Entity<TeachingPreference>().HasData(
+				new TeachingPreference { Id = 1, Name = "Online", CreatedDate = DateTime.UtcNow, IsDeleted = false, ModifiedDate = DateTime.UtcNow },
+				new TeachingPreference { Id = 2, Name = "Student's Home", CreatedDate = DateTime.UtcNow, IsDeleted = false, ModifiedDate = DateTime.UtcNow },
+				new TeachingPreference { Id = 3, Name = "Tutor's Home", CreatedDate = DateTime.UtcNow, IsDeleted = false, ModifiedDate = DateTime.UtcNow });
 
 			modelBuilder.Entity<TimeRange>().ToTable(nameof(TimeRange));
 

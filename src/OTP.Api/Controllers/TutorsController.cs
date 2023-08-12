@@ -1,10 +1,10 @@
-﻿using System.Net;
-
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using OTP.Dtos.Tutors;
 using OTP.Services.Tutors.Interfaces;
+
+using System.Net;
 
 namespace OTP.Api.Controllers
 {
@@ -30,7 +30,7 @@ namespace OTP.Api.Controllers
 			{
 				return Ok(await _getTutorAvailibilityService.GetTutorAvailibilityAsync(tutorId));
 			}
-			catch (Exception)
+			catch(Exception)
 			{
 				return NotFound();
 			}
@@ -45,9 +45,9 @@ namespace OTP.Api.Controllers
 
 				return Ok(id);
 			}
-			catch (Exception)
+			catch(Exception)
 			{
-				return StatusCode((int) HttpStatusCode.InternalServerError, "Error occured while creating a tutor. Please contact support.");
+				return StatusCode((int)HttpStatusCode.InternalServerError, "Error occured while creating a tutor. Please contact support.");
 			}
 		}
 	}
