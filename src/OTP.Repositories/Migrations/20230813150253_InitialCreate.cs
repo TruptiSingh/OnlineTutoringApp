@@ -109,27 +109,6 @@ namespace OTP.Repositories.Migrations
 				});
 
 			migrationBuilder.CreateTable(
-				name: "Tutor",
-				columns: table => new
-				{
-					Id = table.Column<int>(type: "int", nullable: false)
-						.Annotation("SqlServer:Identity", "1, 1"),
-					LinkedUserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-					Bio = table.Column<string>(type: "nvarchar(max)", nullable: true),
-					PricePerHour = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-					Rating = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-					EnhancedDBSChecked = table.Column<bool>(type: "bit", nullable: false),
-					RightToWorkVerified = table.Column<bool>(type: "bit", nullable: false),
-					CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-					ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-					IsDeleted = table.Column<bool>(type: "bit", nullable: false)
-				},
-				constraints: table =>
-				{
-					table.PrimaryKey("PK_Tutor", x => x.Id);
-				});
-
-			migrationBuilder.CreateTable(
 				name: "UserImage",
 				columns: table => new
 				{
@@ -173,7 +152,19 @@ namespace OTP.Repositories.Migrations
 					EducationLevelId = table.Column<int>(type: "int", nullable: false),
 					CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
 					ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-					IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+					IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+					FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+					LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+					Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+					PhoneNumber = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+					Address1 = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+					Address2 = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+					Address3 = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+					City = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+					County = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+					Country = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+					DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
+					GenderId = table.Column<int>(type: "int", nullable: false)
 				},
 				constraints: table =>
 				{
@@ -182,6 +173,116 @@ namespace OTP.Repositories.Migrations
 						name: "FK_Student_EducationLevel_EducationLevelId",
 						column: x => x.EducationLevelId,
 						principalTable: "EducationLevel",
+						principalColumn: "Id",
+						onDelete: ReferentialAction.Cascade);
+					table.ForeignKey(
+						name: "FK_Student_Gender_GenderId",
+						column: x => x.GenderId,
+						principalTable: "Gender",
+						principalColumn: "Id",
+						onDelete: ReferentialAction.Cascade);
+				});
+
+			migrationBuilder.CreateTable(
+				name: "Tutor",
+				columns: table => new
+				{
+					Id = table.Column<int>(type: "int", nullable: false)
+						.Annotation("SqlServer:Identity", "1, 1"),
+					LinkedUserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+					Bio = table.Column<string>(type: "nvarchar(max)", nullable: true),
+					PricePerHour = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+					Rating = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+					EnhancedDBSChecked = table.Column<bool>(type: "bit", nullable: false),
+					RightToWorkVerified = table.Column<bool>(type: "bit", nullable: false),
+					CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+					ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+					IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+					FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+					LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+					Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+					PhoneNumber = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+					Address1 = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+					Address2 = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+					Address3 = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+					City = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+					County = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+					Country = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+					DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
+					GenderId = table.Column<int>(type: "int", nullable: false)
+				},
+				constraints: table =>
+				{
+					table.PrimaryKey("PK_Tutor", x => x.Id);
+					table.ForeignKey(
+						name: "FK_Tutor_Gender_GenderId",
+						column: x => x.GenderId,
+						principalTable: "Gender",
+						principalColumn: "Id",
+						onDelete: ReferentialAction.Cascade);
+				});
+
+			migrationBuilder.CreateTable(
+				name: "StudentSubject",
+				columns: table => new
+				{
+					Id = table.Column<int>(type: "int", nullable: false)
+						.Annotation("SqlServer:Identity", "1, 1"),
+					StudentId = table.Column<int>(type: "int", nullable: false),
+					SubjectId = table.Column<int>(type: "int", nullable: false),
+					CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+					ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+					IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+				},
+				constraints: table =>
+				{
+					table.PrimaryKey("PK_StudentSubject", x => x.Id);
+					table.ForeignKey(
+						name: "FK_StudentSubject_Student_StudentId",
+						column: x => x.StudentId,
+						principalTable: "Student",
+						principalColumn: "Id",
+						onDelete: ReferentialAction.Cascade);
+					table.ForeignKey(
+						name: "FK_StudentSubject_Subject_SubjectId",
+						column: x => x.SubjectId,
+						principalTable: "Subject",
+						principalColumn: "Id",
+						onDelete: ReferentialAction.Cascade);
+				});
+
+			migrationBuilder.CreateTable(
+				name: "TutorAvailibility",
+				columns: table => new
+				{
+					Id = table.Column<int>(type: "int", nullable: false)
+						.Annotation("SqlServer:Identity", "1, 1"),
+					TutorId = table.Column<int>(type: "int", nullable: false),
+					WeekDayId = table.Column<int>(type: "int", nullable: false),
+					TimeRangeId = table.Column<int>(type: "int", nullable: false),
+					CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+					ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+					IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+				},
+				constraints: table =>
+				{
+					table.PrimaryKey("PK_TutorAvailibility", x => x.Id);
+					table.ForeignKey(
+						name: "FK_TutorAvailibility_TimeRange_TimeRangeId",
+						column: x => x.TimeRangeId,
+						principalTable: "TimeRange",
+						principalColumn: "Id",
+						onDelete: ReferentialAction.Cascade);
+					table.ForeignKey(
+						name: "FK_TutorAvailibility_Tutor_TutorId",
+						column: x => x.TutorId,
+						principalTable: "Tutor",
+						principalColumn: "Id",
+						onDelete: ReferentialAction.Cascade);
+					table.ForeignKey(
+						name: "FK_TutorAvailibility_WeekDay_WeekDayId",
+						column: x => x.WeekDayId,
+						principalTable: "WeekDay",
 						principalColumn: "Id",
 						onDelete: ReferentialAction.Cascade);
 				});
@@ -298,80 +399,15 @@ namespace OTP.Repositories.Migrations
 						onDelete: ReferentialAction.Cascade);
 				});
 
-			migrationBuilder.CreateTable(
-				name: "TutorAvailibility",
-				columns: table => new
-				{
-					Id = table.Column<int>(type: "int", nullable: false)
-						.Annotation("SqlServer:Identity", "1, 1"),
-					TutorId = table.Column<int>(type: "int", nullable: false),
-					WeekDayId = table.Column<int>(type: "int", nullable: false),
-					TimeRangeId = table.Column<int>(type: "int", nullable: false),
-					CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-					ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-					IsDeleted = table.Column<bool>(type: "bit", nullable: false)
-				},
-				constraints: table =>
-				{
-					table.PrimaryKey("PK_TutorAvailibility", x => x.Id);
-					table.ForeignKey(
-						name: "FK_TutorAvailibility_TimeRange_TimeRangeId",
-						column: x => x.TimeRangeId,
-						principalTable: "TimeRange",
-						principalColumn: "Id",
-						onDelete: ReferentialAction.Cascade);
-					table.ForeignKey(
-						name: "FK_TutorAvailibility_Tutor_TutorId",
-						column: x => x.TutorId,
-						principalTable: "Tutor",
-						principalColumn: "Id",
-						onDelete: ReferentialAction.Cascade);
-					table.ForeignKey(
-						name: "FK_TutorAvailibility_WeekDay_WeekDayId",
-						column: x => x.WeekDayId,
-						principalTable: "WeekDay",
-						principalColumn: "Id",
-						onDelete: ReferentialAction.Cascade);
-				});
-
-			migrationBuilder.CreateTable(
-				name: "StudentSubject",
-				columns: table => new
-				{
-					Id = table.Column<int>(type: "int", nullable: false)
-						.Annotation("SqlServer:Identity", "1, 1"),
-					StudentId = table.Column<int>(type: "int", nullable: false),
-					SubjectId = table.Column<int>(type: "int", nullable: false),
-					CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-					ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-					IsDeleted = table.Column<bool>(type: "bit", nullable: false)
-				},
-				constraints: table =>
-				{
-					table.PrimaryKey("PK_StudentSubject", x => x.Id);
-					table.ForeignKey(
-						name: "FK_StudentSubject_Student_StudentId",
-						column: x => x.StudentId,
-						principalTable: "Student",
-						principalColumn: "Id",
-						onDelete: ReferentialAction.Cascade);
-					table.ForeignKey(
-						name: "FK_StudentSubject_Subject_SubjectId",
-						column: x => x.SubjectId,
-						principalTable: "Subject",
-						principalColumn: "Id",
-						onDelete: ReferentialAction.Cascade);
-				});
-
 			migrationBuilder.InsertData(
 				table: "DocumentType",
 				columns: new[] { "Id", "CreatedDate", "IsDeleted", "ModifiedDate", "Name" },
 				values: new object[,]
 				{
-					{ 1, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(8908), false, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(8912), "Proof Of Address" },
-					{ 2, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(8914), false, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(8915), "Proof Of Id" },
-					{ 3, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(8917), false, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(8918), "Proof Of DBS" },
-					{ 4, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(8919), false, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(8920), "Proof Of Eligibility To Work" }
+					{ 1, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(8962), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(8965), "Proof Of Address" },
+					{ 2, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(8968), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(8969), "Proof Of Id" },
+					{ 3, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(8971), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(8971), "Proof Of DBS" },
+					{ 4, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(8973), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(8974), "Proof Of Eligibility To Work" }
 				});
 
 			migrationBuilder.InsertData(
@@ -379,8 +415,8 @@ namespace OTP.Repositories.Migrations
 				columns: new[] { "Id", "CreatedDate", "IsDeleted", "ModifiedDate", "Name" },
 				values: new object[,]
 				{
-					{ 1, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(9263), false, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(9266), "Female" },
-					{ 2, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(9268), false, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(9268), "Male" }
+					{ 1, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9316), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9317), "Female" },
+					{ 2, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9318), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9319), "Male" }
 				});
 
 			migrationBuilder.InsertData(
@@ -388,9 +424,9 @@ namespace OTP.Repositories.Migrations
 				columns: new[] { "Id", "CreatedDate", "IsDeleted", "ModifiedDate", "Name" },
 				values: new object[,]
 				{
-					{ 1, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(9466), false, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(9467), "Online" },
-					{ 2, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(9469), false, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(9470), "Student's Home" },
-					{ 3, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(9471), false, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(9472), "Tutor's Home" }
+					{ 1, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9515), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9516), "Online" },
+					{ 2, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9517), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9518), "Student's Home" },
+					{ 3, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9519), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9520), "Tutor's Home" }
 				});
 
 			migrationBuilder.InsertData(
@@ -398,9 +434,9 @@ namespace OTP.Repositories.Migrations
 				columns: new[] { "Id", "CreatedDate", "IsDeleted", "ModifiedDate", "Name" },
 				values: new object[,]
 				{
-					{ 1, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(9569), false, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(9570), "Before 12" },
-					{ 2, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(9571), false, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(9572), "12 - 5 pm" },
-					{ 3, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(9573), false, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(9574), "After 5 pm" }
+					{ 1, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9611), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9612), "Before 12" },
+					{ 2, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9614), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9615), "12 - 5 pm" },
+					{ 3, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9616), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9617), "After 5 pm" }
 				});
 
 			migrationBuilder.InsertData(
@@ -408,19 +444,24 @@ namespace OTP.Repositories.Migrations
 				columns: new[] { "Id", "CreatedDate", "IsDeleted", "ModifiedDate", "Name" },
 				values: new object[,]
 				{
-					{ 1, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(9658), false, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(9659), "Sunday" },
-					{ 2, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(9660), false, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(9661), "Monday" },
-					{ 3, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(9662), false, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(9663), "Tuesday" },
-					{ 4, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(9664), false, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(9665), "Wednesday" },
-					{ 5, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(9666), false, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(9667), "Thursday" },
-					{ 6, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(9668), false, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(9669), "Friday" },
-					{ 7, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(9670), false, new DateTime(2023, 8, 12, 21, 29, 27, 377, DateTimeKind.Utc).AddTicks(9671), "Saturday" }
+					{ 1, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9705), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9706), "Sunday" },
+					{ 2, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9708), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9708), "Monday" },
+					{ 3, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9710), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9710), "Tuesday" },
+					{ 4, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9712), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9712), "Wednesday" },
+					{ 5, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9713), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9714), "Thursday" },
+					{ 6, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9722), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9723), "Friday" },
+					{ 7, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9724), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9725), "Saturday" }
 				});
 
 			migrationBuilder.CreateIndex(
 				name: "IX_Student_EducationLevelId",
 				table: "Student",
 				column: "EducationLevelId");
+
+			migrationBuilder.CreateIndex(
+				name: "IX_Student_GenderId",
+				table: "Student",
+				column: "GenderId");
 
 			migrationBuilder.CreateIndex(
 				name: "IX_StudentSubject_StudentId",
@@ -431,6 +472,11 @@ namespace OTP.Repositories.Migrations
 				name: "IX_StudentSubject_SubjectId",
 				table: "StudentSubject",
 				column: "SubjectId");
+
+			migrationBuilder.CreateIndex(
+				name: "IX_Tutor_GenderId",
+				table: "Tutor",
+				column: "GenderId");
 
 			migrationBuilder.CreateIndex(
 				name: "IX_TutorAvailibility_TimeRangeId",
@@ -490,9 +536,6 @@ namespace OTP.Repositories.Migrations
 				name: "DocumentType");
 
 			migrationBuilder.DropTable(
-				name: "Gender");
-
-			migrationBuilder.DropTable(
 				name: "StudentSubject");
 
 			migrationBuilder.DropTable(
@@ -533,6 +576,9 @@ namespace OTP.Repositories.Migrations
 
 			migrationBuilder.DropTable(
 				name: "EducationLevel");
+
+			migrationBuilder.DropTable(
+				name: "Gender");
 		}
 	}
 }

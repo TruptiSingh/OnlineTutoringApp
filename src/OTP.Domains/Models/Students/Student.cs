@@ -4,7 +4,7 @@ using OTP.Domains.Models.Subjects;
 
 namespace OTP.Domains.Models.Students
 {
-	public class Student : ModelBase
+	public class Student : User
 	{
 		public int LinkedUserId { get; set; }
 
