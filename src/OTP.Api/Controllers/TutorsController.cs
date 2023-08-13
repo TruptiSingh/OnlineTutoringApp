@@ -45,7 +45,7 @@ namespace OTP.Api.Controllers
 
 				return Ok(id);
 			}
-			catch(Exception)
+			catch(Exception ex)
 			{
 				return StatusCode((int)HttpStatusCode.InternalServerError, "Error occured while creating a tutor. Please contact support.");
 			}

@@ -34,6 +34,8 @@ namespace OTP.Services.Tutors.Implementation
 
 			predicate.And(t => t.LinkedUserId == tutorDTO.LinkedUserId);
 
+			int id = 0;
+
 			using(var transaction = await _tutorRepository.StartTransactionAsync())
 			{
 				var tutor = await _tutorRepository.GetAsync(predicate);
@@ -51,8 +53,6 @@ namespace OTP.Services.Tutors.Implementation
 
 					await _tutorRepository.CommitAsync();
 
-					_tutorRepository.ExecuteStoredProcedure("dbo.uspSetTutorDataFromIdentityServerData", tutor.LinkedUserId);
-
 					await _createTutorAvailibilityService.CreateTutorAvailibilityAsync(tutor.Id, tutorDTO.TutorAvailibilities);
 
 					await _createTutorEducationLevel.CreateTutorEducationLevelAsync(tutor.Id, tutorDTO.TutorEducationLevels);
@@ -66,8 +66,14 @@ namespace OTP.Services.Tutors.Implementation
 					throw new Exception("Tutor already exists.");
 				}
 
-				return tutor.Id;
+				await transaction.CommitAsync();
+
+				id = tutor.Id;
 			}
+
+			_tutorRepository.ExecuteStoredProcedure("dbo.uspSetTutorDataFromIdentityServerData", tutorDTO.LinkedUserId);
+
+			return id;
 		}
 	}
 }

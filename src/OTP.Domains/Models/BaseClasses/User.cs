@@ -36,9 +36,9 @@ namespace OTP.Domains.Models.BaseClasses
 		[StringLength(100)]
 		public string Country { get; set; }
 
-		public DateTime DateOfBirth { get; set; }
+		public DateTime? DateOfBirth { get; set; }
 
-		public int GenderId { get; set; }
+		public int? GenderId { get; set; }
 
 		public Gender Gender { get; set; }
 	}

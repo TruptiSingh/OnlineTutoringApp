@@ -163,8 +163,8 @@ namespace OTP.Repositories.Migrations
 					City = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
 					County = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
 					Country = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-					DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
-					GenderId = table.Column<int>(type: "int", nullable: false)
+					DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: true),
+					GenderId = table.Column<int>(type: "int", nullable: true)
 				},
 				constraints: table =>
 				{
@@ -179,8 +179,7 @@ namespace OTP.Repositories.Migrations
 						name: "FK_Student_Gender_GenderId",
 						column: x => x.GenderId,
 						principalTable: "Gender",
-						principalColumn: "Id",
-						onDelete: ReferentialAction.Cascade);
+						principalColumn: "Id");
 				});
 
 			migrationBuilder.CreateTable(
@@ -208,8 +207,8 @@ namespace OTP.Repositories.Migrations
 					City = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
 					County = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
 					Country = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-					DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
-					GenderId = table.Column<int>(type: "int", nullable: false)
+					DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: true),
+					GenderId = table.Column<int>(type: "int", nullable: true)
 				},
 				constraints: table =>
 				{
@@ -218,8 +217,7 @@ namespace OTP.Repositories.Migrations
 						name: "FK_Tutor_Gender_GenderId",
 						column: x => x.GenderId,
 						principalTable: "Gender",
-						principalColumn: "Id",
-						onDelete: ReferentialAction.Cascade);
+						principalColumn: "Id");
 				});
 
 			migrationBuilder.CreateTable(
@@ -404,10 +402,23 @@ namespace OTP.Repositories.Migrations
 				columns: new[] { "Id", "CreatedDate", "IsDeleted", "ModifiedDate", "Name" },
 				values: new object[,]
 				{
-					{ 1, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(8962), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(8965), "Proof Of Address" },
-					{ 2, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(8968), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(8969), "Proof Of Id" },
-					{ 3, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(8971), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(8971), "Proof Of DBS" },
-					{ 4, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(8973), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(8974), "Proof Of Eligibility To Work" }
+					{ 1, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1577), false, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1579), "Proof Of Address" },
+					{ 2, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1581), false, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1582), "Proof Of Id" },
+					{ 3, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1584), false, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1585), "Proof Of DBS" },
+					{ 4, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1586), false, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1587), "Proof Of Eligibility To Work" }
+				});
+
+			migrationBuilder.InsertData(
+				table: "EducationLevel",
+				columns: new[] { "Id", "CreatedDate", "IsDeleted", "ModifiedDate", "Name" },
+				values: new object[,]
+				{
+					{ 1, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1834), false, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1834), "Primary" },
+					{ 2, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1836), false, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1837), "Secondary" },
+					{ 3, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1838), false, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1839), "GCSE" },
+					{ 4, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1840), false, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1841), "A Level" },
+					{ 5, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1842), false, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1843), "University" },
+					{ 6, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1844), false, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1844), "Masters" }
 				});
 
 			migrationBuilder.InsertData(
@@ -415,8 +426,20 @@ namespace OTP.Repositories.Migrations
 				columns: new[] { "Id", "CreatedDate", "IsDeleted", "ModifiedDate", "Name" },
 				values: new object[,]
 				{
-					{ 1, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9316), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9317), "Female" },
-					{ 2, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9318), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9319), "Male" }
+					{ 1, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1944), false, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1945), "Female" },
+					{ 2, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1946), false, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1947), "Male" }
+				});
+
+			migrationBuilder.InsertData(
+				table: "Subject",
+				columns: new[] { "Id", "CreatedDate", "IsDeleted", "ModifiedDate", "Name" },
+				values: new object[,]
+				{
+					{ 1, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2055), false, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2056), "English" },
+					{ 2, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2057), false, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2058), "Maths" },
+					{ 3, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2059), false, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2060), "Physics" },
+					{ 4, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2061), false, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2062), "Chemistry" },
+					{ 5, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2063), false, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2064), "Biology" }
 				});
 
 			migrationBuilder.InsertData(
@@ -424,9 +447,9 @@ namespace OTP.Repositories.Migrations
 				columns: new[] { "Id", "CreatedDate", "IsDeleted", "ModifiedDate", "Name" },
 				values: new object[,]
 				{
-					{ 1, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9515), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9516), "Online" },
-					{ 2, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9517), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9518), "Student's Home" },
-					{ 3, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9519), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9520), "Tutor's Home" }
+					{ 1, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2158), false, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2159), "Online" },
+					{ 2, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2160), false, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2161), "Student's Home" },
+					{ 3, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2162), false, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2163), "Tutor's Home" }
 				});
 
 			migrationBuilder.InsertData(
@@ -434,9 +457,9 @@ namespace OTP.Repositories.Migrations
 				columns: new[] { "Id", "CreatedDate", "IsDeleted", "ModifiedDate", "Name" },
 				values: new object[,]
 				{
-					{ 1, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9611), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9612), "Before 12" },
-					{ 2, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9614), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9615), "12 - 5 pm" },
-					{ 3, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9616), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9617), "After 5 pm" }
+					{ 1, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2260), false, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2261), "Before 12" },
+					{ 2, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2262), false, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2263), "12 - 5 pm" },
+					{ 3, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2264), false, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2265), "After 5 pm" }
 				});
 
 			migrationBuilder.InsertData(
@@ -444,13 +467,13 @@ namespace OTP.Repositories.Migrations
 				columns: new[] { "Id", "CreatedDate", "IsDeleted", "ModifiedDate", "Name" },
 				values: new object[,]
 				{
-					{ 1, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9705), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9706), "Sunday" },
-					{ 2, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9708), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9708), "Monday" },
-					{ 3, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9710), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9710), "Tuesday" },
-					{ 4, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9712), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9712), "Wednesday" },
-					{ 5, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9713), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9714), "Thursday" },
-					{ 6, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9722), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9723), "Friday" },
-					{ 7, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9724), false, new DateTime(2023, 8, 13, 15, 2, 53, 472, DateTimeKind.Utc).AddTicks(9725), "Saturday" }
+					{ 1, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2346), false, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2347), "Sunday" },
+					{ 2, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2348), false, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2349), "Monday" },
+					{ 3, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2350), false, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2351), "Tuesday" },
+					{ 4, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2352), false, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2353), "Wednesday" },
+					{ 5, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2354), false, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2354), "Thursday" },
+					{ 6, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2356), false, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2356), "Friday" },
+					{ 7, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2358), false, new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2358), "Saturday" }
 				});
 
 			migrationBuilder.CreateIndex(
