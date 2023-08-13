@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace OTP.Domains.Models.BaseClasses
 {
-	public abstract class User : ModelBase
+	public class User : ModelBase
 	{
 		[StringLength(50)]
 		public string FirstName { get; set; }

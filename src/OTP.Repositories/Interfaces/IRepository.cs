@@ -1,10 +1,10 @@
-﻿using System.Linq.Expressions;
-
-using LinqKit;
+﻿using LinqKit;
 
 using Microsoft.EntityFrameworkCore.Storage;
 
 using OTP.Domains.Models.BaseClasses;
+
+using System.Linq.Expressions;
 
 namespace OTP.Repositories.Interfaces
 {
@@ -48,7 +48,7 @@ namespace OTP.Repositories.Interfaces
 		/// <param name="filter"></param>
 		/// <param name="includes"></param>
 		/// <returns></returns>
-		Task<TEntity> GetAsync(ExpressionStarter<TEntity> filter, params Expression<Func<TEntity, object>> [] includes);
+		Task<TEntity> GetAsync(ExpressionStarter<TEntity> filter, params Expression<Func<TEntity, object>>[] includes);
 
 		/// <summary>
 		/// Retrieves collection of TEntity objects based on the provided filter (criteria)
@@ -56,7 +56,7 @@ namespace OTP.Repositories.Interfaces
 		/// <param name="filter"></param>
 		/// <param name="includes"></param>
 		/// <returns></returns>
-		Task<IEnumerable<TEntity>> GetAllAsync(ExpressionStarter<TEntity> filter, params Expression<Func<TEntity, object>> [] includes);
+		Task<IEnumerable<TEntity>> GetAllAsync(ExpressionStarter<TEntity> filter, params Expression<Func<TEntity, object>>[] includes);
 
 		/// <summary>
 		/// Retrieves collection of TEntity objects based on the provided filter (criteria) and includes any dependent
@@ -72,7 +72,14 @@ namespace OTP.Repositories.Interfaces
 		/// <returns></returns>
 		Task<Tuple<IEnumerable<TEntity>, int>> GetAllAsync(ExpressionStarter<TEntity> filter,
 			Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, int? skipRange = null,
-			int? requiredRange = null, params Expression<Func<TEntity, object>> [] includes);
+			int? requiredRange = null, params Expression<Func<TEntity, object>>[] includes);
+
+		/// <summary>
+		/// Executes the stored procedure
+		/// </summary>
+		/// <param name="procedureName"></param>
+		/// <param name="parameter"></param>
+		void ExecuteStoredProcedure(string procedureName, string parameter)
 
 		/// <summary>
 		/// Commits changes to the repository asynchronously

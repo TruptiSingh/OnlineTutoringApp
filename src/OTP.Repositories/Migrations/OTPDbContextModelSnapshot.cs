@@ -434,7 +434,7 @@ namespace OTP.Repositories.Migrations
 
                     b.HasIndex("TutorId");
 
-                    b.ToTable("TutorEducationLevel");
+                    b.ToTable("TutorEducationLevel", (string)null);
                 });
 
             modelBuilder.Entity("OTP.Domains.Models.ManyToMany.TutorSubject", b =>

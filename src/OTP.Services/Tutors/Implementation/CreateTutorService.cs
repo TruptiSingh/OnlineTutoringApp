@@ -34,11 +34,11 @@ namespace OTP.Services.Tutors.Implementation
 
 			predicate.And(t => t.LinkedUserId == tutorDTO.LinkedUserId);
 
-			using (var transaction = await _tutorRepository.StartTransactionAsync())
+			using(var transaction = await _tutorRepository.StartTransactionAsync())
 			{
 				var tutor = await _tutorRepository.GetAsync(predicate);
 
-				if (tutor == null)
+				if(tutor == null)
 				{
 					tutor = new Tutor
 					{
@@ -50,6 +50,8 @@ namespace OTP.Services.Tutors.Implementation
 					await _tutorRepository.AddAsync(tutor);
 
 					await _tutorRepository.CommitAsync();
+
+					_tutorRepository.ExecuteStoredProcedure("dbo.uspSetTutorDataFromIdentityServerData", tutor.LinkedUserId);
 
 					await _createTutorAvailibilityService.CreateTutorAvailibilityAsync(tutor.Id, tutorDTO.TutorAvailibilities);
 
