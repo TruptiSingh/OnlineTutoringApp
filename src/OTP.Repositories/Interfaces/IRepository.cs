@@ -79,7 +79,7 @@ namespace OTP.Repositories.Interfaces
 		/// </summary>
 		/// <param name="procedureName"></param>
 		/// <param name="parameter"></param>
-		void ExecuteStoredProcedure(string procedureName, string parameter)
+		void ExecuteStoredProcedure(string procedureName, string parameter);
 
 		/// <summary>
 		/// Commits changes to the repository asynchronously
