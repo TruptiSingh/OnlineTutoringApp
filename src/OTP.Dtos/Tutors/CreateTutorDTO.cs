@@ -4,7 +4,7 @@ using OTP.Dtos.TutorTeachingPreferences;
 
 namespace OTP.Dtos.Tutors
 {
-	public class CreateOrUpdateTutorDTO
+	public class CreateTutorDTO
 	{
 		public string LinkedUserId { get; set; }
 

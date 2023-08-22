@@ -37,7 +37,7 @@ namespace OTP.Api.Controllers
 		}
 
 		[HttpPost]
-		public async Task<ActionResult<int>> CreateTutorAsync(CreateOrUpdateTutorDTO tutorDTO)
+		public async Task<ActionResult<int>> CreateTutorAsync(CreateTutorDTO tutorDTO)
 		{
 			try
 			{

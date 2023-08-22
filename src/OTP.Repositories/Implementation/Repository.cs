@@ -195,13 +195,24 @@ namespace OTP.Repositories.Implementation
 		}
 
 		/// <summary>
-		/// Executes the stored procedure
+		/// Executes the stored procedure with parameters
 		/// </summary>
 		/// <param name="procedureName"></param>
-		/// <param name="parameter"></param>
-		public void ExecuteStoredProcedure(string procedureName, string parameter)
+		/// <param name="parameters"></param>
+		public async Task SP(string procedureName, object[] parameters)
 		{
-			_context.Set<TEntity>().FromSqlRaw(procedureName, parameter);
+			await _context.Database.ExecuteSqlAsync($"Exec {procedureName} {parameters}");
+		}
+
+		/// <summary>
+		/// Executes the stored procedure with no parameters
+		/// </summary>
+		/// <typeparam name="TEntity"></typeparam>
+		/// <param name="procedureName"></param>
+		/// <returns></returns>
+		public async Task SP(string procedureName)
+		{
+			await _context.Database.ExecuteSqlAsync($"Exec {procedureName}");
 		}
 
 		/// <summary>

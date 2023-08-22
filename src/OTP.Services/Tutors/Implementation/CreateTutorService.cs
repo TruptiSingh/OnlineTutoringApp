@@ -28,7 +28,7 @@ namespace OTP.Services.Tutors.Implementation
 			_createTutorTeachingPreferenceService = createTutorTeachingPreferenceService;
 		}
 
-		public async Task<int> CreateTutorAsync(CreateOrUpdateTutorDTO tutorDTO)
+		public async Task<int> CreateTutorAsync(CreateTutorDTO tutorDTO)
 		{
 			ExpressionStarter<Tutor> predicate = PredicateBuilder.New<Tutor>();
 
@@ -71,7 +71,7 @@ namespace OTP.Services.Tutors.Implementation
 				id = tutor.Id;
 			}
 
-			_tutorRepository.ExecuteStoredProcedure("dbo.uspSetTutorDataFromIdentityServerData", tutorDTO.LinkedUserId);
+			await _tutorRepository.SP("dbo.uspSetTutorDataFromIdentityServerData");
 
 			return id;
 		}

@@ -78,8 +78,16 @@ namespace OTP.Repositories.Interfaces
 		/// Executes the stored procedure
 		/// </summary>
 		/// <param name="procedureName"></param>
-		/// <param name="parameter"></param>
-		void ExecuteStoredProcedure(string procedureName, string parameter);
+		/// <param name="parameters"></param>
+		Task SP(string procedureName, params object[] parameters);
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <typeparam name="TEntity"></typeparam>
+		/// <param name="procedureName"></param>
+		/// <returns></returns>
+		Task SP(string procedureName);
 
 		/// <summary>
 		/// Commits changes to the repository asynchronously
