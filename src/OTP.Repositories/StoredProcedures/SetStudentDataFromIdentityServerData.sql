@@ -1,7 +1,5 @@
 ﻿Create Procedure dbo.uspSetStudentDataFromIdentityServerData
 
-	@LinkedUserId nvarchar(40)
-
 As
 
 	Begin
@@ -14,8 +12,6 @@ As
 		From Student S
 
 		Inner Join IdentityServerOTP.dbo.AspNetUsers U On U.Id = S.LinkedUserId
-
-		Where S.LinkedUserId = @LinkedUserId
 
 	End
 

@@ -51,33 +51,33 @@ namespace OTP.Repositories.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1577),
+                            CreatedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5385),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1579),
+                            ModifiedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5386),
                             Name = "Proof Of Address"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1581),
+                            CreatedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5388),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1582),
+                            ModifiedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5388),
                             Name = "Proof Of Id"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1584),
+                            CreatedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5390),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1585),
+                            ModifiedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5390),
                             Name = "Proof Of DBS"
                         },
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1586),
+                            CreatedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5391),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1587),
+                            ModifiedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5392),
                             Name = "Proof Of Eligibility To Work"
                         });
                 });
@@ -111,49 +111,49 @@ namespace OTP.Repositories.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1834),
+                            CreatedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5566),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1834),
+                            ModifiedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5567),
                             Name = "Primary"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1836),
+                            CreatedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5568),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1837),
+                            ModifiedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5568),
                             Name = "Secondary"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1838),
+                            CreatedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5569),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1839),
+                            ModifiedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5570),
                             Name = "GCSE"
                         },
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1840),
+                            CreatedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5571),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1841),
+                            ModifiedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5571),
                             Name = "A Level"
                         },
                         new
                         {
                             Id = 5,
-                            CreatedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1842),
+                            CreatedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5572),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1843),
+                            ModifiedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5573),
                             Name = "University"
                         },
                         new
                         {
                             Id = 6,
-                            CreatedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1844),
+                            CreatedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5574),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1844),
+                            ModifiedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5574),
                             Name = "Masters"
                         });
                 });
@@ -187,17 +187,17 @@ namespace OTP.Repositories.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1944),
+                            CreatedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5639),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1945),
+                            ModifiedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5639),
                             Name = "Female"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1946),
+                            CreatedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5640),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(1947),
+                            ModifiedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5641),
                             Name = "Male"
                         });
                 });
@@ -231,25 +231,25 @@ namespace OTP.Repositories.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2158),
+                            CreatedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5791),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2159),
+                            ModifiedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5791),
                             Name = "Online"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2160),
+                            CreatedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5792),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2161),
+                            ModifiedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5793),
                             Name = "Student's Home"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2162),
+                            CreatedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5794),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2163),
+                            ModifiedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5794),
                             Name = "Tutor's Home"
                         });
                 });
@@ -283,25 +283,25 @@ namespace OTP.Repositories.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2260),
+                            CreatedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5858),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2261),
+                            ModifiedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5858),
                             Name = "Before 12"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2262),
+                            CreatedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5859),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2263),
+                            ModifiedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5860),
                             Name = "12 - 5 pm"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2264),
+                            CreatedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5861),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2265),
+                            ModifiedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5861),
                             Name = "After 5 pm"
                         });
                 });
@@ -335,57 +335,57 @@ namespace OTP.Repositories.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2346),
+                            CreatedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5917),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2347),
+                            ModifiedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5917),
                             Name = "Sunday"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2348),
+                            CreatedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5918),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2349),
+                            ModifiedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5919),
                             Name = "Monday"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2350),
+                            CreatedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5920),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2351),
+                            ModifiedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5920),
                             Name = "Tuesday"
                         },
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2352),
+                            CreatedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5921),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2353),
+                            ModifiedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5922),
                             Name = "Wednesday"
                         },
                         new
                         {
                             Id = 5,
-                            CreatedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2354),
+                            CreatedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5922),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2354),
+                            ModifiedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5923),
                             Name = "Thursday"
                         },
                         new
                         {
                             Id = 6,
-                            CreatedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2356),
+                            CreatedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5924),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2356),
+                            ModifiedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5924),
                             Name = "Friday"
                         },
                         new
                         {
                             Id = 7,
-                            CreatedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2358),
+                            CreatedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5925),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2358),
+                            ModifiedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5925),
                             Name = "Saturday"
                         });
                 });
@@ -609,8 +609,8 @@ namespace OTP.Repositories.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("LinkedUserId")
-                        .HasColumnType("int");
+                    b.Property<string>("LinkedUserId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -657,41 +657,41 @@ namespace OTP.Repositories.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2055),
+                            CreatedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5715),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2056),
+                            ModifiedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5715),
                             Name = "English"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2057),
+                            CreatedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5716),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2058),
+                            ModifiedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5717),
                             Name = "Maths"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2059),
+                            CreatedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5718),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2060),
+                            ModifiedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5718),
                             Name = "Physics"
                         },
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2061),
+                            CreatedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5719),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2062),
+                            ModifiedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5720),
                             Name = "Chemistry"
                         },
                         new
                         {
                             Id = 5,
-                            CreatedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2063),
+                            CreatedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5720),
                             IsDeleted = false,
-                            ModifiedDate = new DateTime(2023, 8, 13, 22, 13, 0, 912, DateTimeKind.Utc).AddTicks(2064),
+                            ModifiedDate = new DateTime(2023, 8, 22, 18, 32, 47, 942, DateTimeKind.Utc).AddTicks(5721),
                             Name = "Biology"
                         });
                 });
@@ -749,6 +749,9 @@ namespace OTP.Repositories.Migrations
 
                     b.Property<int?>("GenderId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Introduction")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");

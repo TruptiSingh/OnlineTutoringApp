@@ -116,6 +116,7 @@ namespace OTP.Services.Tutors.Implementation
 				searchTutorResponse.Add(new SearchTutorResponseDto
 				{
 					HourlyRate = tutor.PricePerHour,
+					Introduction = tutor.Introduction,
 					Name = $"{tutor.FirstName} {tutor.LastName}",
 					Rating = tutor.Rating,
 					TutorId = tutor.Id,

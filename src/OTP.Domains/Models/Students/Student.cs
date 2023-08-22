@@ -6,7 +6,7 @@ namespace OTP.Domains.Models.Students
 {
 	public class Student : User
 	{
-		public int LinkedUserId { get; set; }
+		public string LinkedUserId { get; set; }
 
 		public int EducationLevelId { get; set; }
 

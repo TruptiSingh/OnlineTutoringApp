@@ -60,15 +60,15 @@ namespace OTP.Services.Tutors.Implementation
 					await _createTutorSubjectService.CreateTutorSubjectAsync(tutor.Id, tutorDTO.TutorSubjects);
 
 					await _createTutorTeachingPreferenceService.CreateTutorTeachingPreferenceAsync(tutor.Id, tutorDTO.TutorTeachingPreferences);
+
+					await transaction.CommitAsync();
+
+					id = tutor.Id;
 				}
 				else
 				{
 					throw new Exception("Tutor already exists.");
 				}
-
-				await transaction.CommitAsync();
-
-				id = tutor.Id;
 			}
 
 			await _tutorRepository.SP("dbo.uspSetTutorDataFromIdentityServerData");

@@ -8,6 +8,8 @@ namespace OTP.Domains.Models.Tutors
 	{
 		public string LinkedUserId { get; set; }
 
+		public string Introduction { get; set; }
+
 		public string Bio { get; set; }
 
 		public decimal PricePerHour { get; set; }

@@ -8,6 +8,8 @@
 
 		public decimal HourlyRate { get; set; }
 
+		public string Introduction { get; set; }
+
 		public decimal? Rating { get; set; }
 
 		public string TutorImagePath { get; set; }
