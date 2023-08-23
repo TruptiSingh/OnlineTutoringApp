@@ -4,11 +4,17 @@ using OTP.Domains.Models.Subjects;
 
 namespace OTP.Domains.Models.Tutors
 {
-	public class Tutor : ModelBase
+	public class Tutor : User
 	{
-		public int LinkedUserId { get; set; }
+		public string LinkedUserId { get; set; }
+
+		public string Introduction { get; set; }
+
+		public string Bio { get; set; }
 
 		public decimal PricePerHour { get; set; }
+
+		public decimal Rating { get; set; }
 
 		public bool EnhancedDBSChecked { get; set; }
 

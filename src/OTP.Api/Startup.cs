@@ -1,12 +1,12 @@
-﻿using System.Globalization;
-
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 using OTP.Api.Ioc;
 using OTP.Repositories;
+
+using System.Globalization;
 
 namespace OTP.Api
 {
@@ -24,7 +24,7 @@ namespace OTP.Api
 		{
 			services.AddControllers();
 
-			var portalSite = Configuration ["PortalSite"];
+			var portalSite = Configuration["PortalSite"];
 
 			services.AddCors(options =>
 			{
@@ -39,7 +39,7 @@ namespace OTP.Api
 					});
 			});
 
-			var identityServerSite = Configuration ["IdentityServerSite"];
+			var identityServerSite = Configuration["IdentityServerSite"];
 
 			var connectionString = Configuration.GetConnectionString("DefaultConnection");
 
@@ -81,12 +81,12 @@ namespace OTP.Api
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
-			if (env.IsDevelopment())
+			if(env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
 			}
 
-			var supportedCultures = new []
+			var supportedCultures = new[]
 			{
 				new CultureInfo("en-GB")
 			};
@@ -103,6 +103,8 @@ namespace OTP.Api
 			app.UseHttpsRedirection();
 
 			app.UseRouting();
+
+			app.UseStaticFiles();
 
 			app.UseAuthentication();
 

@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\OTP.Domains\OTP.Domains.csproj" />
     <ProjectReference Include="..\OTP.Dtos\OTP.Dtos.csproj" />
     <ProjectReference Include="..\OTP.Repositories\OTP.Repositories.csproj" />

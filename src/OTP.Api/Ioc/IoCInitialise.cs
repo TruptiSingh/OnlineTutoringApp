@@ -1,4 +1,5 @@
-﻿using OTP.Repositories.Implementation;
+﻿using OTP.Api.AutoMapper;
+using OTP.Repositories.Implementation;
 using OTP.Repositories.Interfaces;
 using OTP.Services.Enums.Implementation;
 using OTP.Services.Enums.Interfaces;
@@ -13,9 +14,29 @@ namespace OTP.Api.Ioc
 		{
 			services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
+			services.AddAutoMapper(typeof(AutoMapperProfile));
+
 			services.AddScoped<IConvertEnumsToIntStringPair, ConvertEnumsToIntStringPair>();
 
-			services.AddScoped<IGetTutorAvailibility, GetTutorAvailibility>();
+			services.AddScoped<IGetTutorAvailibilityService, GetTutorAvailibilityService>();
+
+			services.AddScoped<ICreateTutorAvailibilityService, CreateTutorAvailibilityService>();
+
+			services.AddScoped<ICreateTutorEducationLevelService, CreateTutorEducationLevelService>();
+
+			services.AddScoped<IGetTutorEducationLevelService, GetTutorEducationLevelService>();
+
+			services.AddScoped<ICreateTutorSubjectService, CreateTutorSubjectService>();
+
+			services.AddScoped<IGetTutorSubjectService, GetTutorSubjectService>();
+
+			services.AddScoped<ICreateTutorTeachingPreferenceService, CreateTutorTeachingPreferenceService>();
+
+			services.AddScoped<IGetTutorTeachingPreferenceService, GetTutorTeachingPreferenceService>();
+
+			services.AddScoped<ICreateTutorService, CreateTutorService>();
+
+			services.AddScoped<IGetTuorService, GetTuorService>();
 		}
 	}
 }
