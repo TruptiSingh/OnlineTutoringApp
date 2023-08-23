@@ -59,7 +59,7 @@ namespace OTP.Services.Tutors.Implementation
 			return getTutorDTO;
 		}
 
-		public async Task<ICollection<SearchTutorResponseDTO>> GetTutorsBySearchCriteria(SearchTutorRequestDTO searchTutorRequest)
+		public async Task<ICollection<SearchTutorResponseDTO>> GetTutorsBySearchCriteriaAsync(SearchTutorRequestDTO searchTutorRequest)
 		{
 			var filter = PredicateBuilder.New<Tutor>();
 

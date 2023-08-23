@@ -23,7 +23,7 @@ namespace OTP.Services.Students.Implementation
 			_mapper = mapper;
 		}
 
-		public async Task<GetStudentDTO> GetStudentById(int id)
+		public async Task<GetStudentDTO> GetStudentByIdAsync(int id)
 		{
 			var predicate = PredicateBuilder.New<Student>();
 
@@ -39,7 +39,7 @@ namespace OTP.Services.Students.Implementation
 			return studentDTO;
 		}
 
-		public async Task<GetStudentDTO> GetStudentByLinkedUserId(string linkedUserId)
+		public async Task<GetStudentDTO> GetStudentByLinkedUserIdAsync(string linkedUserId)
 		{
 			var predicate = PredicateBuilder.New<Student>();
 

@@ -4,8 +4,8 @@ namespace OTP.Services.Students.Interfaces
 {
 	public interface IGetStudentService
 	{
-		Task<GetStudentDTO> GetStudentById(int id);
+		Task<GetStudentDTO> GetStudentByIdAsync(int id);
 
-		Task<GetStudentDTO> GetStudentByLinkedUserId(string linkedUserId);
+		Task<GetStudentDTO> GetStudentByLinkedUserIdAsync(string linkedUserId);
 	}
 }
