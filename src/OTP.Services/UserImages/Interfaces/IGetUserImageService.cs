@@ -2,6 +2,8 @@
 {
 	public interface IGetUserImageService
 	{
-		Task<Tuple<string, string>> GetUserImagePath(int userId);
+		Task<Tuple<string, string>> GetUserImageNameAndPath(int userId);
+
+		Task<byte[]> GetUserImage(int userId);
 	}
 }

@@ -6,6 +6,8 @@ namespace OTP.Services.Tutors.Interfaces
 	{
 		Task<GetTutorDTO> GetTutorByIdAsync(int tutorId);
 
-		Task<ICollection<SearchTutorResponseDto>> GetTutorsBySearchCriteria(SearchTutorRequestDto searchTutorRequest);
+		Task<GetTutorDTO> GetTutorByLinkedUserIdAsync(string linkedUserId);
+
+		Task<ICollection<SearchTutorResponseDTO>> GetTutorsBySearchCriteria(SearchTutorRequestDTO searchTutorRequest);
 	}
 }

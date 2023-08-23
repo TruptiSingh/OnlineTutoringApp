@@ -2,9 +2,11 @@
 
 using OTP.Domains.Models.CodedLists;
 using OTP.Domains.Models.ManyToMany;
+using OTP.Domains.Models.Students;
 using OTP.Domains.Models.Subjects;
 using OTP.Domains.Models.Tutors;
 using OTP.Dtos.EducationLevels;
+using OTP.Dtos.Students;
 using OTP.Dtos.Subjects;
 using OTP.Dtos.TeachingPreferences;
 using OTP.Dtos.Tutors;
@@ -18,6 +20,7 @@ namespace OTP.Api.AutoMapper
 		{
 			CreateMap<EducationLevel, EducationLevelDTO>();
 			CreateMap<Subject, SubjectDTO>();
+			CreateMap<Student, GetStudentDTO>();
 			CreateMap<TutorSubject, TutorSubjectDTO>();
 			CreateMap<TutorAvailibility, TutorAvailibilityDTO>();
 			CreateMap<TeachingPreference, TeachingPreferenceDTO>();

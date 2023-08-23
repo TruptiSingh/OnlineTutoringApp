@@ -53,7 +53,7 @@ namespace OTP.Services.UserImages.Implementation
 				throw new Exception("Invalid user type");
 			}
 
-			var fileName = $"{userName}_{storeUserImage.UserId}_{storeUserImage.ImageFile.FileName}";
+			var fileName = $"{userName}_{storeUserImage.UserId}_{storeUserImage.ImageFile.FileName}.jpg";
 
 			var filePath = Path.Combine(storeUserImage.WebRootPath,
 				"UserImages", fileName);

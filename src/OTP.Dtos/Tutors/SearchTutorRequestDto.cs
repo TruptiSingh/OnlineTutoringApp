@@ -1,6 +1,6 @@
 ﻿namespace OTP.Dtos.Tutors
 {
-	public class SearchTutorRequestDto
+	public class SearchTutorRequestDTO
 	{
 		public string City { get; set; }
 

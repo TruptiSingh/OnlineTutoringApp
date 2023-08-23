@@ -43,7 +43,23 @@ namespace OTP.Services.Tutors.Implementation
 			return getTutorDTO;
 		}
 
-		public async Task<ICollection<SearchTutorResponseDto>> GetTutorsBySearchCriteria(SearchTutorRequestDto searchTutorRequest)
+		public async Task<GetTutorDTO> GetTutorByLinkedUserIdAsync(string linkedUserId)
+		{
+			ExpressionStarter<Tutor> predicate = PredicateBuilder.New<Tutor>();
+
+			predicate.And(t => t.LinkedUserId == linkedUserId);
+
+			Expression<Func<Tutor, object>>[] includes = new Expression<Func<Tutor, object>>[]
+				{ t => t.EducationLevels, t => t.Subjects, t => t.TeachingPreferences, t => t.TutorAvailibilities };
+
+			var tutor = await _tutorRepository.GetAsync(predicate);
+
+			var getTutorDTO = _mapper.Map<GetTutorDTO>(tutor);
+
+			return getTutorDTO;
+		}
+
+		public async Task<ICollection<SearchTutorResponseDTO>> GetTutorsBySearchCriteria(SearchTutorRequestDTO searchTutorRequest)
 		{
 			var filter = PredicateBuilder.New<Tutor>();
 
@@ -107,21 +123,20 @@ namespace OTP.Services.Tutors.Implementation
 
 			var tutors = await _tutorRepository.GetAllAsync(filter, includes);
 
-			var searchTutorResponse = new List<SearchTutorResponseDto>();
+			var searchTutorResponse = new List<SearchTutorResponseDTO>();
 
 			foreach(var tutor in tutors)
 			{
-				var userImage = await _getUserImageService.GetUserImagePath(tutor.Id);
+				var userImage = await _getUserImageService.GetUserImage(tutor.Id);
 
-				searchTutorResponse.Add(new SearchTutorResponseDto
+				searchTutorResponse.Add(new SearchTutorResponseDTO
 				{
 					HourlyRate = tutor.PricePerHour,
 					Introduction = tutor.Introduction,
 					Name = $"{tutor.FirstName} {tutor.LastName}",
 					Rating = tutor.Rating,
 					TutorId = tutor.Id,
-					TutorImageName = userImage.Item1,
-					TutorImagePath = userImage.Item2,
+					TutorImage = userImage,
 				});
 			}
 

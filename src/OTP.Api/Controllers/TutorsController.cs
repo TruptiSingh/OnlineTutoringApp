@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 using OTP.Dtos.Tutors;
 using OTP.Services.Tutors.Interfaces;
@@ -14,21 +13,36 @@ namespace OTP.Api.Controllers
 	{
 		private readonly IGetTutorAvailibilityService _getTutorAvailibilityService;
 		private readonly ICreateTutorService _createTutorService;
+		private readonly IGetTuorService _getTuorService;
 
 		public TutorsController(IGetTutorAvailibilityService getTutorAvailibilityService,
-			ICreateTutorService createTutorService)
+			ICreateTutorService createTutorService,
+			IGetTuorService getTuorService)
 		{
 			_getTutorAvailibilityService = getTutorAvailibilityService;
 			_createTutorService = createTutorService;
+			_getTuorService = getTuorService;
 		}
 
 		[HttpGet("TutorAvailibility/{tutorId}")]
-		[Authorize]
 		public async Task<ActionResult<List<TutorAvailibilityDTO>>> GetTutorAvailibilityAsync(int tutorId)
 		{
 			try
 			{
 				return Ok(await _getTutorAvailibilityService.GetTutorAvailibilityAsync(tutorId));
+			}
+			catch(Exception)
+			{
+				return NotFound();
+			}
+		}
+
+		[HttpGet("{id}")]
+		public async Task<ActionResult<GetTutorDTO>> GetTutorByIdAsync(int id)
+		{
+			try
+			{
+				return Ok(await _getTuorService.GetTutorByIdAsync(id));
 			}
 			catch(Exception)
 			{
