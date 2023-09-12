@@ -20,24 +20,24 @@ namespace OTP.Services.Students.Implementation
 			_studentSubjectRepository = studentSubjectRepository;
 		}
 
-		public async Task<int> CreateStudentAsync(CreateStudentDTO createStudentDTO)
+		public async Task<int> CreateStudentAsync(CreateStudentAngularDTO createStudentAngularDTO)
 		{
 			int id = 0;
 
 			var predicate = PredicateBuilder.New<Student>();
 
-			predicate.And(s => s.LinkedUserId == createStudentDTO.LinkedUserId);
+			predicate.And(s => s.LinkedUserId == createStudentAngularDTO.LinkedUserId);
 
-			using(var transaction = await _studentRepository.StartTransactionAsync())
+			using (var transaction = await _studentRepository.StartTransactionAsync())
 			{
 				var student = await _studentRepository.GetAsync(predicate);
 
-				if(student == null)
+				if (student == null)
 				{
 					student = new Student
 					{
-						EducationLevelId = createStudentDTO.EducationLevelId,
-						LinkedUserId = createStudentDTO.LinkedUserId,
+						EducationLevelId = createStudentAngularDTO.EducationLevelId,
+						LinkedUserId = createStudentAngularDTO.LinkedUserId,
 					};
 
 					await _studentRepository.AddAsync(student);
@@ -46,12 +46,12 @@ namespace OTP.Services.Students.Implementation
 
 					var studentSubjects = new List<StudentSubject>();
 
-					foreach(var studentSubjectDTO in createStudentDTO.StudentSubjects)
+					foreach (var studentSubjectDTO in createStudentAngularDTO.StudentSubjects)
 					{
 						var studentSubject = new StudentSubject
 						{
 							StudentId = student.Id,
-							SubjectId = studentSubjectDTO.SubjectId,
+							SubjectId = studentSubjectDTO,
 						};
 
 						studentSubjects.Add(studentSubject);

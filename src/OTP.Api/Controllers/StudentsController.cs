@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Net;
+
+using Microsoft.AspNetCore.Mvc;
 
 using OTP.Dtos.Students;
 using OTP.Services.Students.Interfaces;
-
-using System.Net;
 
 namespace OTP.Api.Controllers
 {
@@ -28,35 +28,35 @@ namespace OTP.Api.Controllers
 			{
 				return await _getStudentService.GetStudentByIdAsync(id);
 			}
-			catch(Exception)
+			catch (Exception)
 			{
 				return NotFound();
 			}
 		}
 
-		[HttpGet("{linkedUserId:string}")]
+		[HttpGet("LinkedUserId/{linkedUserId}")]
 		public async Task<ActionResult<GetStudentDTO>> GetStudentByLinkedUserIdAsync(string linkedUserId)
 		{
 			try
 			{
 				return await _getStudentService.GetStudentByLinkedUserIdAsync(linkedUserId);
 			}
-			catch(Exception)
+			catch (Exception)
 			{
 				return NotFound();
 			}
 		}
 
 		[HttpPost]
-		public async Task<ActionResult<int>> CreateStudentAsync(CreateStudentDTO createStudent)
+		public async Task<ActionResult<int>> CreateStudentAsync(CreateStudentAngularDTO createStudent)
 		{
 			try
 			{
 				return Ok(await _createStudentService.CreateStudentAsync(createStudent));
 			}
-			catch(Exception)
+			catch (Exception)
 			{
-				return StatusCode((int)HttpStatusCode.InternalServerError, "Error occured while creating a student. Please contact support.");
+				return StatusCode((int) HttpStatusCode.InternalServerError, "Error occured while creating a student. Please contact support.");
 			}
 		}
 	}

@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using System.Linq.Expressions;
+
+using AutoMapper;
 
 using LinqKit;
 
@@ -6,8 +8,6 @@ using OTP.Domains.Models.Students;
 using OTP.Dtos.Students;
 using OTP.Repositories.Interfaces;
 using OTP.Services.Students.Interfaces;
-
-using System.Linq.Expressions;
 
 namespace OTP.Services.Students.Implementation
 {
@@ -29,12 +29,17 @@ namespace OTP.Services.Students.Implementation
 
 			predicate.And(s => s.Id == id);
 
-			Expression<Func<Student, object>>[] includes = new Expression<Func<Student, object>>[]
+			Expression<Func<Student, object>> [] includes = new Expression<Func<Student, object>> []
 				{ s => s.EducationLevel, s => s.Subjects };
 
 			var student = await _studentRepository.GetAsync(predicate, includes);
 
 			var studentDTO = _mapper.Map<GetStudentDTO>(student);
+
+			studentDTO.SubjectIds = new List<int>();
+
+			studentDTO.SubjectIds.ToList()
+				.AddRange(studentDTO.Subjects.Select(s => s.Id));
 
 			return studentDTO;
 		}
@@ -45,7 +50,7 @@ namespace OTP.Services.Students.Implementation
 
 			predicate.And(s => s.LinkedUserId == linkedUserId);
 
-			Expression<Func<Student, object>>[] includes = new Expression<Func<Student, object>>[]
+			Expression<Func<Student, object>> [] includes = new Expression<Func<Student, object>> []
 				{ s => s.EducationLevel, s => s.Subjects };
 
 			var student = await _studentRepository.GetAsync(predicate, includes);

@@ -27,8 +27,9 @@ namespace OTP.Services.UserImages.Implementation
 		public async Task StoreUserImageAsync(StoreUserImageDTO storeUserImage)
 		{
 			string userName = "";
+			string subDirectoryName = "";
 
-			if(storeUserImage.UserType == UserTypes.Tutor)
+			if (storeUserImage.UserType == UserTypes.Tutor)
 			{
 				var predicate = PredicateBuilder.New<Tutor>();
 
@@ -37,8 +38,9 @@ namespace OTP.Services.UserImages.Implementation
 				var tutor = await _tutorRepository.GetAsync(predicate);
 
 				userName = $"{tutor.FirstName}_{tutor.LastName}";
+				subDirectoryName = "TutorImages";
 			}
-			else if(storeUserImage.UserType == UserTypes.Student)
+			else if (storeUserImage.UserType == UserTypes.Student)
 			{
 				var predicate = PredicateBuilder.New<Student>();
 
@@ -47,6 +49,7 @@ namespace OTP.Services.UserImages.Implementation
 				var student = await _studentRepository.GetAsync(predicate);
 
 				userName = $"{student.FirstName}_{student.LastName}";
+				subDirectoryName = "StudentImages";
 			}
 			else
 			{
@@ -56,9 +59,9 @@ namespace OTP.Services.UserImages.Implementation
 			var fileName = $"{userName}_{storeUserImage.UserId}_{storeUserImage.ImageFile.FileName}.jpg";
 
 			var filePath = Path.Combine(storeUserImage.WebRootPath,
-				"UserImages", fileName);
+				subDirectoryName, fileName);
 
-			using(var stream = new FileStream(filePath, FileMode.Create))
+			using (var stream = new FileStream(filePath, FileMode.Create))
 			{
 				await storeUserImage.ImageFile.CopyToAsync(stream);
 			}

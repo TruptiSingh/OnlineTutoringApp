@@ -4,6 +4,6 @@ namespace OTP.Services.Tutors.Interfaces
 {
 	public interface ICreateTutorService
 	{
-		Task<int> CreateTutorAsync(CreateTutorDTO tutorDTO);
+		Task<int> CreateTutorAsync(CreateTutorAngularDTO createTutorAngularDTO);
 	}
 }

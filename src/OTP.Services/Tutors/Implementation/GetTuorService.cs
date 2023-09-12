@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using System.Linq.Expressions;
+
+using AutoMapper;
 
 using LinqKit;
 
@@ -7,8 +9,6 @@ using OTP.Dtos.Tutors;
 using OTP.Repositories.Interfaces;
 using OTP.Services.Tutors.Interfaces;
 using OTP.Services.UserImages.Interfaces;
-
-using System.Linq.Expressions;
 
 namespace OTP.Services.Tutors.Implementation
 {
@@ -33,7 +33,7 @@ namespace OTP.Services.Tutors.Implementation
 
 			predicate.And(t => t.Id == tutorId);
 
-			Expression<Func<Tutor, object>>[] includes = new Expression<Func<Tutor, object>>[]
+			Expression<Func<Tutor, object>> [] includes = new Expression<Func<Tutor, object>> []
 				{ t => t.EducationLevels, t => t.Subjects, t => t.TeachingPreferences, t => t.TutorAvailibilities };
 
 			var tutor = await _tutorRepository.GetAsync(predicate);
@@ -49,7 +49,7 @@ namespace OTP.Services.Tutors.Implementation
 
 			predicate.And(t => t.LinkedUserId == linkedUserId);
 
-			Expression<Func<Tutor, object>>[] includes = new Expression<Func<Tutor, object>>[]
+			Expression<Func<Tutor, object>> [] includes = new Expression<Func<Tutor, object>> []
 				{ t => t.EducationLevels, t => t.Subjects, t => t.TeachingPreferences, t => t.TutorAvailibilities };
 
 			var tutor = await _tutorRepository.GetAsync(predicate);
@@ -65,69 +65,69 @@ namespace OTP.Services.Tutors.Implementation
 
 			filter.And(t => t.IsDeleted == false);
 
-			if(!string.IsNullOrWhiteSpace(searchTutorRequest.City))
+			if (!string.IsNullOrWhiteSpace(searchTutorRequest.City))
 			{
 				filter.And(t => t.City.ToLower() == searchTutorRequest.City.ToLower());
 			}
 
-			if(searchTutorRequest.SubjectIds != null && searchTutorRequest.SubjectIds.Any())
+			if (searchTutorRequest.SubjectIds != null && searchTutorRequest.SubjectIds.Any())
 			{
-				foreach(var subjectId in searchTutorRequest.SubjectIds)
+				foreach (var subjectId in searchTutorRequest.SubjectIds)
 				{
 					filter.And(t => t.Subjects
 						.Any(s => s.Id == subjectId));
 				}
 			}
 
-			if(searchTutorRequest.GenderId.HasValue)
+			if (searchTutorRequest.GenderId.HasValue)
 			{
 				filter.And(t => t.GenderId == searchTutorRequest.GenderId.Value);
 			}
 
-			if(searchTutorRequest.MinPrice.HasValue)
+			if (searchTutorRequest.MinPrice.HasValue)
 			{
 				filter.And(t => t.PricePerHour >= searchTutorRequest.MinPrice.Value);
 			}
 
-			if(searchTutorRequest.MaxPrice.HasValue)
+			if (searchTutorRequest.MaxPrice.HasValue)
 			{
 				filter.And(t => t.PricePerHour <= searchTutorRequest.MaxPrice.Value);
 			}
 
-			if(searchTutorRequest.TeachingPreferenceIds != null && searchTutorRequest.TeachingPreferenceIds.Any())
+			if (searchTutorRequest.TeachingPreferenceIds != null && searchTutorRequest.TeachingPreferenceIds.Any())
 			{
-				foreach(var preferenceId in searchTutorRequest.TeachingPreferenceIds)
+				foreach (var preferenceId in searchTutorRequest.TeachingPreferenceIds)
 				{
 					filter.And(t => t.TeachingPreferences
 						.Any(ta => ta.Id == preferenceId));
 				}
 			}
 
-			if(searchTutorRequest.AvailableDayIds != null && searchTutorRequest.AvailableDayIds.Any())
+			if (searchTutorRequest.AvailableDayIds != null && searchTutorRequest.AvailableDayIds.Any())
 			{
-				foreach(var availibilityId in searchTutorRequest.AvailableDayIds)
+				foreach (var availibilityId in searchTutorRequest.AvailableDayIds)
 				{
 					filter.And(t => t.TutorAvailibilities
 						.Any(ta => ta.WeekDayId == availibilityId));
 				}
 			}
 
-			if(searchTutorRequest.LevelId.HasValue)
+			if (searchTutorRequest.LevelId.HasValue)
 			{
 				filter.And(t => t.EducationLevels
 					.Any(el => el.Id == searchTutorRequest.LevelId));
 			}
 
-			Expression<Func<Tutor, object>>[] includes = { t => t.Subjects,
+			Expression<Func<Tutor, object>> [] includes = { t => t.Subjects,
 				t => t.EducationLevels, t => t.TeachingPreferences, t => t.TutorAvailibilities };
 
 			var tutors = await _tutorRepository.GetAllAsync(filter, includes);
 
 			var searchTutorResponse = new List<SearchTutorResponseDTO>();
 
-			foreach(var tutor in tutors)
+			foreach (var tutor in tutors)
 			{
-				var userImage = await _getUserImageService.GetUserImage(tutor.Id);
+				var userImage = await _getUserImageService.GetUserImageAsync(tutor.Id);
 
 				searchTutorResponse.Add(new SearchTutorResponseDTO
 				{

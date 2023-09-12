@@ -15,7 +15,7 @@ namespace OTP.Services.UserImages.Implementation
 			_userImageRepository = userImageRepository;
 		}
 
-		public async Task<Tuple<string, string>> GetUserImageNameAndPath(int userId)
+		public async Task<Tuple<string, string>> GetUserImageNameAndPathAsync(int userId)
 		{
 			var predicate = PredicateBuilder.New<UserImage>();
 
@@ -26,7 +26,7 @@ namespace OTP.Services.UserImages.Implementation
 			return Tuple.Create(userImage.ImageName, userImage.ImagePath);
 		}
 
-		public async Task<byte[]> GetUserImage(int userId)
+		public async Task<byte []> GetUserImageAsync(int userId)
 		{
 			var predicate = PredicateBuilder.New<UserImage>();
 
@@ -34,7 +34,7 @@ namespace OTP.Services.UserImages.Implementation
 
 			var userImage = await _userImageRepository.GetAsync(predicate);
 
-			byte[] image = File.ReadAllBytes(userImage.ImagePath);
+			byte [] image = File.ReadAllBytes(userImage.ImagePath);
 
 			return image;
 		}

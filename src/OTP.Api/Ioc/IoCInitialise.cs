@@ -9,6 +9,8 @@ using OTP.Services.Subjects.Implementation;
 using OTP.Services.Subjects.Interfaces;
 using OTP.Services.Tutors.Implementation;
 using OTP.Services.Tutors.Interfaces;
+using OTP.Services.UserDocuments.Implementation;
+using OTP.Services.UserDocuments.Interfaces;
 using OTP.Services.UserImages.Implementation;
 using OTP.Services.UserImages.Interfaces;
 
@@ -55,6 +57,10 @@ namespace OTP.Api.Ioc
 			services.AddScoped<IGetUserImageService, GetUserImageService>();
 
 			services.AddScoped<IStoreUserImageService, StoreUserImageService>();
+
+			services.AddScoped<IGetUserDocumentService, GetUserDocumentService>();
+
+			services.AddScoped<IStoreUserDocumentService, StoreUserDocumentService>();
 		}
 	}
 }

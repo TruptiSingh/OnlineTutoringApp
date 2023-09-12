@@ -4,6 +4,6 @@ namespace OTP.Services.Students.Interfaces
 {
 	public interface ICreateStudentService
 	{
-		Task<int> CreateStudentAsync(CreateStudentDTO createStudentDTO);
+		Task<int> CreateStudentAsync(CreateStudentAngularDTO createStudentAngularDTO);
 	}
 }

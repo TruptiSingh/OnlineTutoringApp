@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 
 using OTP.Domains.Models.CodedLists;
+using OTP.Domains.Models.Common;
 using OTP.Domains.Models.ManyToMany;
 using OTP.Domains.Models.Students;
 using OTP.Domains.Models.Subjects;
@@ -11,6 +12,7 @@ using OTP.Dtos.Subjects;
 using OTP.Dtos.TeachingPreferences;
 using OTP.Dtos.Tutors;
 using OTP.Dtos.TutorSubjects;
+using OTP.Dtos.UserDocuments;
 
 namespace OTP.Api.AutoMapper
 {
@@ -20,10 +22,15 @@ namespace OTP.Api.AutoMapper
 		{
 			CreateMap<EducationLevel, EducationLevelDTO>();
 			CreateMap<Subject, SubjectDTO>();
-			CreateMap<Student, GetStudentDTO>();
+
+			CreateMap<Student, GetStudentDTO>()
+				.ForMember(s => s.StudentId, o => o.MapFrom(s => s.Id))
+				.ForMember(s => s.SubjectIds, o => o.Ignore());
+
 			CreateMap<TutorSubject, TutorSubjectDTO>();
 			CreateMap<TutorAvailibility, TutorAvailibilityDTO>();
 			CreateMap<TeachingPreference, TeachingPreferenceDTO>();
+
 			CreateMap<Tutor, GetTutorDTO>()
 				.ForMember(t => t.TutorId, opt => opt.MapFrom(s => s.Id));
 
@@ -63,6 +70,8 @@ namespace OTP.Api.AutoMapper
 				.ForMember(tp => tp.IsDeleted, opt => opt.Ignore())
 				.ForMember(tp => tp.ModifiedDate, opt => opt.Ignore())
 				.ForMember(tp => tp.Tutors, opt => opt.Ignore());
+
+			CreateMap<GetUserDocumentsDTO, UserDocument>();
 
 			//CreateMap<TutorTeachingPreferenceDTO, TutorTeachingPreference>()
 			//	.ForMember(ttp => ttp.CreatedDate, opt => opt.Ignore())

@@ -1,7 +1,10 @@
 ﻿using LinqKit;
 
 using OTP.Domains.Models.Tutors;
+using OTP.Dtos.TutorEducationLevels;
 using OTP.Dtos.Tutors;
+using OTP.Dtos.TutorSubjects;
+using OTP.Dtos.TutorTeachingPreferences;
 using OTP.Repositories.Interfaces;
 using OTP.Services.Tutors.Interfaces;
 
@@ -28,19 +31,45 @@ namespace OTP.Services.Tutors.Implementation
 			_createTutorTeachingPreferenceService = createTutorTeachingPreferenceService;
 		}
 
-		public async Task<int> CreateTutorAsync(CreateTutorDTO tutorDTO)
+		public async Task<int> CreateTutorAsync(CreateTutorAngularDTO createTutorAngularDTO)
 		{
 			ExpressionStarter<Tutor> predicate = PredicateBuilder.New<Tutor>();
+
+			CreateTutorDTO tutorDTO = new()
+			{
+				Bio = createTutorAngularDTO.Bio,
+				Introduction = createTutorAngularDTO.Introduction,
+				LinkedUserId = createTutorAngularDTO.LinkedUserId,
+				TutorAvailibilities = createTutorAngularDTO.TutorAvailibilities
+			};
+
+			tutorDTO.TutorEducationLevels.ToList().AddRange(createTutorAngularDTO.TutorEducationLevels
+				.Select(el => new TutorEducationLevelDTO()
+				{
+					EducationLevelId = el
+				}));
+
+			tutorDTO.TutorTeachingPreferences.ToList().AddRange(createTutorAngularDTO.TutorTeachingPreferences
+				.Select(tp => new TutorTeachingPreferenceDTO()
+				{
+					TeachingPreferenceId = tp
+				}));
+
+			tutorDTO.TutorSubjects.ToList().AddRange(createTutorAngularDTO.TutorSubjects
+				.Select(s => new TutorSubjectDTO()
+				{
+					SubjectId = s
+				}));
 
 			predicate.And(t => t.LinkedUserId == tutorDTO.LinkedUserId);
 
 			int id = 0;
 
-			using(var transaction = await _tutorRepository.StartTransactionAsync())
+			using (var transaction = await _tutorRepository.StartTransactionAsync())
 			{
 				var tutor = await _tutorRepository.GetAsync(predicate);
 
-				if(tutor == null)
+				if (tutor == null)
 				{
 					tutor = new Tutor
 					{

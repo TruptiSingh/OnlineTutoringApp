@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Reflection;
+
+using Microsoft.EntityFrameworkCore;
 
 using OTP.Domains.Models.CodedLists;
 using OTP.Domains.Models.Common;
@@ -6,8 +8,6 @@ using OTP.Domains.Models.ManyToMany;
 using OTP.Domains.Models.Students;
 using OTP.Domains.Models.Subjects;
 using OTP.Domains.Models.Tutors;
-
-using System.Reflection;
 
 namespace OTP.Repositories
 {
@@ -45,6 +45,8 @@ namespace OTP.Repositories
 		public DbSet<TutorSubject> TutorSubjects { get; set; }
 
 		public DbSet<TutorTeachingPreference> TutorTeachingPreferences { get; set; }
+
+		public DbSet<UserDocument> UserDocuments { get; set; }
 
 		public DbSet<UserImage> UserImages { get; set; }
 
@@ -121,6 +123,8 @@ namespace OTP.Repositories
 			modelBuilder.Entity<TutorSubject>().ToTable(nameof(TutorSubject));
 
 			modelBuilder.Entity<TutorTeachingPreference>().ToTable(nameof(TutorTeachingPreference));
+
+			modelBuilder.Entity<UserDocument>().ToTable(nameof(UserDocument));
 
 			modelBuilder.Entity<UserImage>().ToTable(nameof(UserImage));
 

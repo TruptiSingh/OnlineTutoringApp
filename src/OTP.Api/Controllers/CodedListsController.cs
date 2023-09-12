@@ -64,9 +64,19 @@ namespace OTP.Api.Controllers
 		[HttpGet("DocumentTypes")]
 		public ActionResult<List<IntStringPair>> GetDocumentTypes()
 		{
-			var documentTypess = _convertEnumsToIntStringPair.ConvertEnumToIntStringPair<DocumentTypes>();
+			var documentTypes = _convertEnumsToIntStringPair.ConvertEnumToIntStringPair<DocumentTypes>();
 
-			return Ok(documentTypess);
+			return Ok(documentTypes);
+		}
+
+		[HttpGet("DocumentTypesForStudent")]
+		public ActionResult<List<IntStringPair>> GetDocumentTypesForStudent()
+		{
+			var documentTypes = _convertEnumsToIntStringPair.ConvertEnumToIntStringPair<DocumentTypes>();
+
+			documentTypes = documentTypes.Where(dt => dt.Key != 3 || dt.Key != 4).ToList();
+
+			return Ok(documentTypes);
 		}
 	}
 }

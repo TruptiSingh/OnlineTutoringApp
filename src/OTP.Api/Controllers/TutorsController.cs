@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Net;
+
+using Microsoft.AspNetCore.Mvc;
 
 using OTP.Dtos.Tutors;
 using OTP.Services.Tutors.Interfaces;
-
-using System.Net;
 
 namespace OTP.Api.Controllers
 {
@@ -31,7 +31,7 @@ namespace OTP.Api.Controllers
 			{
 				return Ok(await _getTutorAvailibilityService.GetTutorAvailibilityAsync(tutorId));
 			}
-			catch(Exception)
+			catch (Exception)
 			{
 				return NotFound();
 			}
@@ -44,20 +44,20 @@ namespace OTP.Api.Controllers
 			{
 				return Ok(await _getTuorService.GetTutorByIdAsync(id));
 			}
-			catch(Exception)
+			catch (Exception)
 			{
 				return NotFound();
 			}
 		}
 
-		[HttpGet("{linkedUserId:string}")]
+		[HttpGet("LinkedUserId/{linkedUserId}")]
 		public async Task<ActionResult<GetTutorDTO>> GetTutorByLinkedUserIdAsync(string linkedUserId)
 		{
 			try
 			{
 				return Ok(await _getTuorService.GetTutorByLinkedUserIdAsync(linkedUserId));
 			}
-			catch(Exception)
+			catch (Exception)
 			{
 				return NotFound();
 			}
@@ -70,24 +70,24 @@ namespace OTP.Api.Controllers
 			{
 				return Ok(await _getTuorService.GetTutorsBySearchCriteriaAsync(searchCriteria));
 			}
-			catch(Exception)
+			catch (Exception)
 			{
 				return BadRequest();
 			}
 		}
 
 		[HttpPost]
-		public async Task<ActionResult<int>> CreateTutorAsync(CreateTutorDTO tutorDTO)
+		public async Task<ActionResult<int>> CreateTutorAsync(CreateTutorAngularDTO createTutorAngularDTO)
 		{
 			try
 			{
-				int id = await _createTutorService.CreateTutorAsync(tutorDTO);
+				int id = await _createTutorService.CreateTutorAsync(createTutorAngularDTO);
 
 				return Ok(id);
 			}
-			catch(Exception)
+			catch (Exception)
 			{
-				return StatusCode((int)HttpStatusCode.InternalServerError, "Error occured while creating a tutor. Please contact support.");
+				return StatusCode((int) HttpStatusCode.InternalServerError, "Error occured while creating a tutor. Please contact support.");
 			}
 		}
 	}
