@@ -78,5 +78,13 @@ namespace OTP.Api.Controllers
 
 			return Ok(documentTypes);
 		}
+
+		[HttpGet("UserTypes")]
+		public ActionResult<List<IntStringPair>> GetUserTypes()
+		{
+			var userTypes = _convertEnumsToIntStringPair.ConvertEnumToIntStringPair<UserTypes>();
+
+			return Ok(userTypes);
+		}
 	}
 }

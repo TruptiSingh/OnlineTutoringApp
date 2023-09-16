@@ -54,7 +54,7 @@ namespace OTP.Api.Controllers
 			{
 				return Ok(await _createStudentService.CreateStudentAsync(createStudent));
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
 				return StatusCode((int) HttpStatusCode.InternalServerError, "Error occured while creating a student. Please contact support.");
 			}

@@ -72,7 +72,7 @@ namespace OTP.Services.UserDocuments.Implementation
 				DocumentName = fileName,
 				DocumentPath = filePath,
 				UserId = storeUserFile.UserId,
-				DocumentType = (int) storeUserFile.DocumentType
+				DocumentType = storeUserFile.DocumentType
 			};
 
 			await _userDocumentRepository.AddAsync(userDocument);

@@ -10,7 +10,7 @@ namespace OTP.Dtos.UserDocuments
 
 		public UserTypes UserType { get; set; }
 
-		public DocumentTypes DocumentType { get; set; }
+		public int DocumentType { get; set; }
 
 		public string WebRootPath { get; set; }
 

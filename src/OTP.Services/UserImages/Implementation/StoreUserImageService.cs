@@ -56,7 +56,25 @@ namespace OTP.Services.UserImages.Implementation
 				throw new Exception("Invalid user type");
 			}
 
-			var fileName = $"{userName}_{storeUserImage.UserId}_{storeUserImage.ImageFile.FileName}.jpg";
+			var files = Directory.GetFiles(Path.Combine(storeUserImage.WebRootPath,
+				subDirectoryName)).Where(f => f.Contains($"{userName}_{storeUserImage.UserId}"));
+
+			foreach (var file in files)
+			{
+				File.Delete(file);
+
+				var predicate = PredicateBuilder.New<UserImage>();
+
+				predicate.And(ui => ui.ImagePath == file);
+
+				var userFiles = await _storeUserImageRepository.GetAllAsync(predicate);
+
+				await _storeUserImageRepository.DeleteRangeAsync(userFiles.ToList());
+
+				await _storeUserImageRepository.CommitAsync();
+			}
+
+			var fileName = $"{userName}_{storeUserImage.UserId}_{storeUserImage.ImageFile.FileName}";
 
 			var filePath = Path.Combine(storeUserImage.WebRootPath,
 				subDirectoryName, fileName);

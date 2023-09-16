@@ -11,12 +11,15 @@ namespace OTP.Api.Controllers
 	{
 		private readonly IGetUserDocumentService _getUserDocumentService;
 		private readonly IStoreUserDocumentService _storeUserDocumentService;
+		private readonly IWebHostEnvironment _hostingEnvironment;
 
 		public DocumentsController(IGetUserDocumentService getUserDocumentService,
-			IStoreUserDocumentService storeUserDocumentService)
+			IStoreUserDocumentService storeUserDocumentService,
+			IWebHostEnvironment hostingEnvironment)
 		{
 			_getUserDocumentService = getUserDocumentService;
 			_storeUserDocumentService = storeUserDocumentService;
+			_hostingEnvironment = hostingEnvironment;
 		}
 
 		[HttpGet("{userId}")]
@@ -30,6 +33,8 @@ namespace OTP.Api.Controllers
 		[HttpPost]
 		public async Task<ActionResult> StoreUserDocumentsAsync(StoreUserFileDTO storeUserFileDTO)
 		{
+			storeUserFileDTO.WebRootPath = _hostingEnvironment.WebRootPath;
+
 			await _storeUserDocumentService.StoreUserDocumentAsync(storeUserFileDTO);
 
 			return Ok();
