@@ -29,12 +29,7 @@ namespace OTP.Services.Students.Implementation
 
 			using (var transaction = await _studentRepository.StartTransactionAsync())
 			{
-				var student = await _studentRepository.GetAsync(predicate);
-
-				if (student == null)
-				{
-					throw new Exception("Student not found");
-				}
+				var student = await _studentRepository.GetAsync(predicate) ?? throw new Exception("Student not found");
 
 				student.EducationLevelId = updateStudentAngularDTO.EducationLevelId;
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
+using OTP.Dtos.Enums;
 using OTP.Dtos.UserDocuments;
 using OTP.Services.UserDocuments.Interfaces;
 
@@ -31,9 +32,21 @@ namespace OTP.Api.Controllers
 		}
 
 		[HttpPost]
-		public async Task<ActionResult> StoreUserDocumentsAsync(StoreUserFileDTO storeUserFileDTO)
+		public async Task<ActionResult> StoreUserDocumentsAsync()
 		{
-			storeUserFileDTO.WebRootPath = _hostingEnvironment.WebRootPath;
+			var file = Request.Form.Files [0];
+			var documentType = Request.Form ["documentType"];
+			var userId = Request.Form ["userId"];
+			var userType = Request.Form ["userType"];
+
+			StoreUserFileDTO storeUserFileDTO = new()
+			{
+				DocumentType = int.Parse(documentType),
+				UserDocumentFile = file,
+				UserId = int.Parse(userId),
+				UserType = Enum.Parse<UserTypes>(userType),
+				WebRootPath = _hostingEnvironment.WebRootPath
+			};
 
 			await _storeUserDocumentService.StoreUserDocumentAsync(storeUserFileDTO);
 

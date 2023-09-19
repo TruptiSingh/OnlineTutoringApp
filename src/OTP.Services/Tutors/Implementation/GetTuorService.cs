@@ -36,9 +36,11 @@ namespace OTP.Services.Tutors.Implementation
 			Expression<Func<Tutor, object>> [] includes = new Expression<Func<Tutor, object>> []
 				{ t => t.EducationLevels, t => t.Subjects, t => t.TeachingPreferences, t => t.TutorAvailibilities };
 
-			var tutor = await _tutorRepository.GetAsync(predicate);
+			var tutor = await _tutorRepository.GetAsync(predicate, includes);
 
 			var getTutorDTO = _mapper.Map<GetTutorDTO>(tutor);
+
+			PopulateIntLists(getTutorDTO);
 
 			return getTutorDTO;
 		}
@@ -52,9 +54,11 @@ namespace OTP.Services.Tutors.Implementation
 			Expression<Func<Tutor, object>> [] includes = new Expression<Func<Tutor, object>> []
 				{ t => t.EducationLevels, t => t.Subjects, t => t.TeachingPreferences, t => t.TutorAvailibilities };
 
-			var tutor = await _tutorRepository.GetAsync(predicate);
+			var tutor = await _tutorRepository.GetAsync(predicate, includes);
 
 			var getTutorDTO = _mapper.Map<GetTutorDTO>(tutor);
+
+			PopulateIntLists(getTutorDTO);
 
 			return getTutorDTO;
 		}
@@ -141,6 +145,33 @@ namespace OTP.Services.Tutors.Implementation
 			}
 
 			return searchTutorResponse;
+		}
+
+		private void PopulateIntLists(GetTutorDTO getTutorDTO)
+		{
+			if (getTutorDTO != null)
+			{
+				getTutorDTO.SubjectIds = new List<int>();
+
+				foreach (var subject in getTutorDTO.Subjects)
+				{
+					getTutorDTO.SubjectIds.Add(subject.Id);
+				}
+
+				getTutorDTO.EducationLevelIds = new List<int>();
+
+				foreach (var educationLevel in getTutorDTO.EducationLevels)
+				{
+					getTutorDTO.EducationLevelIds.Add(educationLevel.Id);
+				}
+
+				getTutorDTO.TeachingPreferenceIds = new List<int>();
+
+				foreach (var teachingPreference in getTutorDTO.TeachingPreferences)
+				{
+					getTutorDTO.TeachingPreferenceIds.Add(teachingPreference.Id);
+				}
+			}
 		}
 	}
 }

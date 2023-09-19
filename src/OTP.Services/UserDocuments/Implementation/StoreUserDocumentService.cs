@@ -57,7 +57,23 @@ namespace OTP.Services.UserDocuments.Implementation
 				throw new Exception("Invalid user type");
 			}
 
-			var fileName = $"{userName}_{storeUserFile.UserId}_{storeUserFile.UserDocumentFile.FileName}.pdf";
+			var userDocumentPredicate = PredicateBuilder.New<UserDocument>();
+
+			userDocumentPredicate.And(uf => uf.UserId == storeUserFile.UserId);
+			userDocumentPredicate.And(uf => uf.DocumentType == storeUserFile.DocumentType);
+
+			var userFiles = await _userDocumentRepository.GetAllAsync(userDocumentPredicate);
+
+			foreach (var file in userFiles)
+			{
+				File.Delete(file.DocumentPath);
+			}
+
+			await _userDocumentRepository.DeleteRangeAsync(userFiles.ToList());
+
+			await _userDocumentRepository.CommitAsync();
+
+			var fileName = $"{userName}_{storeUserFile.UserId}_{storeUserFile.UserDocumentFile.FileName}";
 
 			var filePath = Path.Combine(storeUserFile.WebRootPath,
 				subDirectoryName, fileName);

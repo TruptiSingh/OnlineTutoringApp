@@ -38,9 +38,19 @@ namespace OTP.Services.Tutors.Implementation
 				WeekDayId = ta.WeekDayId
 			}));
 
+			availibilities = availibilities.Where(a => a.TimeRangeId != 0 || a.WeekDayId != 0).ToList();
+
 			await _tutorAvailibilityRepository.AddRangeAsync(availibilities);
 
-			await _tutorAvailibilityRepository.CommitAsync();
+			try
+			{
+				await _tutorAvailibilityRepository.CommitAsync();
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.ToString());
+				throw;
+			}
 		}
 	}
 }

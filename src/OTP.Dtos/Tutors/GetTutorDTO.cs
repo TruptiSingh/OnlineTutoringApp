@@ -20,9 +20,15 @@ namespace OTP.Dtos.Tutors
 
 		public ICollection<EducationLevelDTO> EducationLevels { get; set; }
 
+		public ICollection<int> EducationLevelIds { get; set; }
+
 		public ICollection<SubjectDTO> Subjects { get; set; }
 
+		public ICollection<int> SubjectIds { get; set; }
+
 		public ICollection<TeachingPreferenceDTO> TeachingPreferences { get; set; }
+
+		public ICollection<int> TeachingPreferenceIds { get; set; }
 
 		public ICollection<TutorAvailibilityDTO> TutorAvailibilities { get; set; }
 	}

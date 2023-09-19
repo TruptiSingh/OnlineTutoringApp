@@ -32,7 +32,10 @@ namespace OTP.Api.AutoMapper
 			CreateMap<TeachingPreference, TeachingPreferenceDTO>();
 
 			CreateMap<Tutor, GetTutorDTO>()
-				.ForMember(t => t.TutorId, opt => opt.MapFrom(s => s.Id));
+				.ForMember(t => t.TutorId, opt => opt.MapFrom(s => s.Id))
+				.ForMember(s => s.SubjectIds, o => o.Ignore())
+				.ForMember(s => s.EducationLevelIds, o => o.Ignore())
+				.ForMember(s => s.TeachingPreferenceIds, o => o.Ignore());
 
 			CreateMap<EducationLevelDTO, EducationLevel>()
 				.ForMember(el => el.CreatedDate, opt => opt.Ignore())

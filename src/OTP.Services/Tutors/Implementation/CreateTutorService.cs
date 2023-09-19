@@ -40,26 +40,45 @@ namespace OTP.Services.Tutors.Implementation
 				Bio = createTutorAngularDTO.Bio,
 				Introduction = createTutorAngularDTO.Introduction,
 				LinkedUserId = createTutorAngularDTO.LinkedUserId,
+				PricePerHour = createTutorAngularDTO.PricePerHour,
 				TutorAvailibilities = createTutorAngularDTO.TutorAvailibilities
 			};
 
-			tutorDTO.TutorEducationLevels.ToList().AddRange(createTutorAngularDTO.TutorEducationLevels
-				.Select(el => new TutorEducationLevelDTO()
+			foreach (var el in createTutorAngularDTO.TutorEducationLevels)
+			{
+				tutorDTO.TutorEducationLevels.Add(new TutorEducationLevelDTO
 				{
 					EducationLevelId = el
-				}));
+				});
+			}
 
-			tutorDTO.TutorTeachingPreferences.ToList().AddRange(createTutorAngularDTO.TutorTeachingPreferences
-				.Select(tp => new TutorTeachingPreferenceDTO()
+			//tutorDTO.TutorEducationLevels.ToList().AddRange(createTutorAngularDTO.TutorEducationLevels
+			//	.Select(el => new TutorEducationLevelDTO()
+			//	{
+			//		EducationLevelId = el
+			//	}));
+
+			foreach (var tp in createTutorAngularDTO.TutorTeachingPreferences)
+			{
+				tutorDTO.TutorTeachingPreferences.Add(new TutorTeachingPreferenceDTO
 				{
 					TeachingPreferenceId = tp
-				}));
+				});
+			}
 
-			tutorDTO.TutorSubjects.ToList().AddRange(createTutorAngularDTO.TutorSubjects
-				.Select(s => new TutorSubjectDTO()
+			//tutorDTO.TutorTeachingPreferences.ToList().AddRange(createTutorAngularDTO.TutorTeachingPreferences
+			//	.Select(tp => new TutorTeachingPreferenceDTO()
+			//	{
+			//		TeachingPreferenceId = tp
+			//	}));
+
+			foreach (var s in createTutorAngularDTO.TutorSubjects)
+			{
+				tutorDTO.TutorSubjects.Add(new TutorSubjectDTO
 				{
 					SubjectId = s
-				}));
+				});
+			}
 
 			predicate.And(t => t.LinkedUserId == tutorDTO.LinkedUserId);
 
@@ -74,6 +93,7 @@ namespace OTP.Services.Tutors.Implementation
 					tutor = new Tutor
 					{
 						Bio = tutorDTO.Bio,
+						Introduction = tutorDTO.Introduction,
 						LinkedUserId = tutorDTO.LinkedUserId,
 						PricePerHour = tutorDTO.PricePerHour,
 					};

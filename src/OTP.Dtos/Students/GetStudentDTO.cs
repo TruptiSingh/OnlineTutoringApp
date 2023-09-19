@@ -7,7 +7,7 @@ namespace OTP.Dtos.Students
 	{
 		public int StudentId { get; set; }
 
-		public int LinkedUserId { get; set; }
+		public string LinkedUserId { get; set; }
 
 		public int EducationLevelId { get; set; }
 

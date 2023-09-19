@@ -74,7 +74,7 @@ namespace OTP.Api.Controllers
 		{
 			var documentTypes = _convertEnumsToIntStringPair.ConvertEnumToIntStringPair<DocumentTypes>();
 
-			documentTypes = documentTypes.Where(dt => dt.Key != 3 || dt.Key != 4).ToList();
+			documentTypes = documentTypes.Where(dt => dt.Key == 1 || dt.Key == 2).ToList();
 
 			return Ok(documentTypes);
 		}

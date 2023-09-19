@@ -13,12 +13,15 @@ namespace OTP.Api.Controllers
 	{
 		private readonly ICreateStudentService _createStudentService;
 		private readonly IGetStudentService _getStudentService;
+		private readonly IUpdateStudentService _updateStudentService;
 
 		public StudentsController(ICreateStudentService createStudentService,
-			IGetStudentService getStudentService)
+			IGetStudentService getStudentService,
+			IUpdateStudentService updateStudentService)
 		{
 			_createStudentService = createStudentService;
 			_getStudentService = getStudentService;
+			_updateStudentService = updateStudentService;
 		}
 
 		[HttpGet("{id:int}")]
@@ -54,9 +57,24 @@ namespace OTP.Api.Controllers
 			{
 				return Ok(await _createStudentService.CreateStudentAsync(createStudent));
 			}
-			catch (Exception ex)
+			catch (Exception)
 			{
 				return StatusCode((int) HttpStatusCode.InternalServerError, "Error occured while creating a student. Please contact support.");
+			}
+		}
+
+		[HttpPut]
+		public async Task<ActionResult> UpdateStudentAsync(UpdateStudentAngularDTO updateStudent)
+		{
+			try
+			{
+				await _updateStudentService.UpdateStudentAsync(updateStudent);
+
+				return Ok();
+			}
+			catch (Exception)
+			{
+				return StatusCode((int) HttpStatusCode.InternalServerError, "Error occured while updating a student. Please contact support.");
 			}
 		}
 	}

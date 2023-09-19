@@ -14,14 +14,17 @@ namespace OTP.Api.Controllers
 		private readonly IGetTutorAvailibilityService _getTutorAvailibilityService;
 		private readonly ICreateTutorService _createTutorService;
 		private readonly IGetTuorService _getTuorService;
+		private readonly IUpdateTutorService _updateTutorService;
 
 		public TutorsController(IGetTutorAvailibilityService getTutorAvailibilityService,
 			ICreateTutorService createTutorService,
-			IGetTuorService getTuorService)
+			IGetTuorService getTuorService,
+			IUpdateTutorService updateTutorService)
 		{
 			_getTutorAvailibilityService = getTutorAvailibilityService;
 			_createTutorService = createTutorService;
 			_getTuorService = getTuorService;
+			_updateTutorService = updateTutorService;
 		}
 
 		[HttpGet("TutorAvailibility/{tutorId}")]
@@ -88,6 +91,21 @@ namespace OTP.Api.Controllers
 			catch (Exception)
 			{
 				return StatusCode((int) HttpStatusCode.InternalServerError, "Error occured while creating a tutor. Please contact support.");
+			}
+		}
+
+		[HttpPut]
+		public async Task<ActionResult> UpdateTutorAsync(UpdateTutorAngularDTO updateTutor)
+		{
+			try
+			{
+				await _updateTutorService.UpdateTutorAsync(updateTutor);
+
+				return Ok();
+			}
+			catch (Exception)
+			{
+				return StatusCode((int) HttpStatusCode.InternalServerError, "Error occured while updating a tutor. Please contact support.");
 			}
 		}
 	}

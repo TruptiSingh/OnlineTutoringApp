@@ -26,9 +26,16 @@ namespace OTP.Api.Controllers
 		[HttpGet("{userId}")]
 		public async Task<IActionResult> GetUserImageAsync(int userId)
 		{
-			var image = await _getUserImageService.GetUserImageAsync(userId);
+			try
+			{
+				var image = await _getUserImageService.GetUserImageAsync(userId);
 
-			return File(image, "image/jpeg");
+				return File(image, "image/jpeg");
+			}
+			catch (Exception)
+			{
+				return NotFound();
+			}
 		}
 
 		[HttpPost]

@@ -18,8 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\StudentImages\" />
     <Folder Include="wwwroot\StudentDocuments\" />
+    <Folder Include="wwwroot\StudentImages\" />
     <Folder Include="wwwroot\TutorDocuments\" />
     <Folder Include="wwwroot\TutorImages\" />
   </ItemGroup>

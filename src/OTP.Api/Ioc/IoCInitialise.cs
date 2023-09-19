@@ -46,7 +46,11 @@ namespace OTP.Api.Ioc
 
 			services.AddScoped<IGetTuorService, GetTuorService>();
 
+			services.AddScoped<IUpdateTutorService, UpdateTutorService>();
+
 			services.AddScoped<ICreateStudentService, CreateStudentService>();
+
+			services.AddScoped<IUpdateStudentService, UpdateStudentService>();
 
 			services.AddScoped<ICreateSubjectService, CreateSubjectService>();
 

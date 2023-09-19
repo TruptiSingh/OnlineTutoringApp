@@ -36,10 +36,7 @@ namespace OTP.Services.Students.Implementation
 
 			var studentDTO = _mapper.Map<GetStudentDTO>(student);
 
-			studentDTO.SubjectIds = new List<int>();
-
-			studentDTO.SubjectIds.ToList()
-				.AddRange(studentDTO.Subjects.Select(s => s.Id));
+			PopulateIntLists(studentDTO);
 
 			return studentDTO;
 		}
@@ -57,7 +54,22 @@ namespace OTP.Services.Students.Implementation
 
 			var studentDTO = _mapper.Map<GetStudentDTO>(student);
 
+			PopulateIntLists(studentDTO);
+
 			return studentDTO;
+		}
+
+		private static void PopulateIntLists(GetStudentDTO studentDTO)
+		{
+			if (studentDTO != null)
+			{
+				studentDTO.SubjectIds = new List<int>();
+
+				foreach (var subject in studentDTO.Subjects)
+				{
+					studentDTO.SubjectIds.Add(subject.Id);
+				}
+			}
 		}
 	}
 }
