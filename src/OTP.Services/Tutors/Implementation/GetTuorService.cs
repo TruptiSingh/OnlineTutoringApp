@@ -138,7 +138,7 @@ namespace OTP.Services.Tutors.Implementation
 					HourlyRate = tutor.PricePerHour,
 					Introduction = tutor.Introduction,
 					Name = $"{tutor.FirstName} {tutor.LastName}",
-					Rating = tutor.Rating,
+					Rating = tutor.Rating == 0 ? null : tutor.Rating,
 					TutorId = tutor.Id,
 					TutorImage = userImage,
 				});

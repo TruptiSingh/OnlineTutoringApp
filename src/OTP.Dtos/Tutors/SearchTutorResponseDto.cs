@@ -12,10 +12,6 @@
 
 		public decimal? Rating { get; set; }
 
-		public byte[] TutorImage { get; set; }
-
-		public string TutorImagePath { get; set; }
-
-		public string TutorImageName { get; set; }
+		public byte [] TutorImage { get; set; }
 	}
 }
