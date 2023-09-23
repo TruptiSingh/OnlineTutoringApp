@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 using OTP.Dtos.Enums;
 using OTP.Dtos.UserImages;
@@ -8,6 +9,7 @@ namespace OTP.Api.Controllers
 {
 	[Route("api/v1/[controller]")]
 	[ApiController]
+	[Authorize]
 	public class ImagesController : ControllerBase
 	{
 		private readonly IGetUserImageService _getUserImageService;

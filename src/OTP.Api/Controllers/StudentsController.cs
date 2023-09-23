@@ -1,5 +1,6 @@
 ﻿using System.Net;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using OTP.Dtos.Students;
@@ -9,6 +10,7 @@ namespace OTP.Api.Controllers
 {
 	[Route("api/v1/[controller]")]
 	[ApiController]
+	[Authorize]
 	public class StudentsController : ControllerBase
 	{
 		private readonly ICreateStudentService _createStudentService;

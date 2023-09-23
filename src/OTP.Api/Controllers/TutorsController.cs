@@ -1,5 +1,6 @@
 ﻿using System.Net;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using OTP.Dtos.Tutors;
@@ -27,6 +28,7 @@ namespace OTP.Api.Controllers
 			_updateTutorService = updateTutorService;
 		}
 
+		[Authorize]
 		[HttpGet("TutorAvailibility/{tutorId}")]
 		public async Task<ActionResult<List<TutorAvailibilityDTO>>> GetTutorAvailibilityAsync(int tutorId)
 		{
@@ -40,6 +42,7 @@ namespace OTP.Api.Controllers
 			}
 		}
 
+		[Authorize]
 		[HttpGet("{id:int}")]
 		public async Task<ActionResult<GetTutorDTO>> GetTutorByIdAsync(int id)
 		{
@@ -53,6 +56,7 @@ namespace OTP.Api.Controllers
 			}
 		}
 
+		[Authorize]
 		[HttpGet("LinkedUserId/{linkedUserId}")]
 		public async Task<ActionResult<GetTutorDTO>> GetTutorByLinkedUserIdAsync(string linkedUserId)
 		{
@@ -79,6 +83,7 @@ namespace OTP.Api.Controllers
 			}
 		}
 
+		[Authorize]
 		[HttpPost]
 		public async Task<ActionResult<int>> CreateTutorAsync(CreateTutorAngularDTO createTutorAngularDTO)
 		{
@@ -94,6 +99,7 @@ namespace OTP.Api.Controllers
 			}
 		}
 
+		[Authorize]
 		[HttpPut]
 		public async Task<ActionResult> UpdateTutorAsync(UpdateTutorAngularDTO updateTutor)
 		{
